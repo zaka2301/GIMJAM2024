@@ -6,6 +6,7 @@ public class GameLogic : MonoBehaviour
 {
 
     [SerializeField] InputDisplay inputDisplay;
+    [SerializeField] Animator summaryScreen;
     [SerializeField] GameObject timerBar;
     [SerializeField] public float playerTimer;
     [SerializeField] public float enemyTimer;
@@ -15,8 +16,11 @@ public class GameLogic : MonoBehaviour
     public static int[] inputs = new int[4]{0,0,0,0};
     public static int currentInput;
     public static int playerHealth;
+    public static int playerBaseHealth;
 
     public static int enemyHealth;
+
+
     private int mistakeCount = 0;
 
     public static int round = 0;
@@ -26,6 +30,9 @@ public class GameLogic : MonoBehaviour
         //probably use Playerpref here
         playerHealth = 100;
         enemyHealth = 100;
+        round = 0;
+
+        playerBaseHealth = playerHealth;
     }
 
     private void RandomizeInput()
@@ -134,11 +141,15 @@ public class GameLogic : MonoBehaviour
 
         if(currentInput < 0) //berhasil hit semua
         {
-            enemyHealth = (int) ( (float) enemyHealth * 0.66f); // -1/3
+            int damage = (int) ( (float) enemyHealth * 0.33f); // -1/3
+            playerHealth += damage; // * x%
+            enemyHealth -= damage;
         }
         else
         {
-            playerHealth = (int) ( (float) playerHealth * 0.80f); // -1/5
+            int damage = (int) ( (float) playerHealth * 0.20f); // -1/5
+            playerHealth -= damage;
+            enemyHealth += damage;
         }
 
         //set up enemy turn
@@ -155,7 +166,7 @@ public class GameLogic : MonoBehaviour
 
         if(round > maxRound) //debat selesai
         {
-
+            summaryScreen.enabled = true;
 
             return; //selesai, gausah setup
         }
