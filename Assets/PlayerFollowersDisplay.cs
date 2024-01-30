@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerBar : MonoBehaviour
+public class PlayerFollowersDisplay : MonoBehaviour
 {
+    private Text display;
     // Start is called before the first frame update
-    [SerializeField] Slider slider;
-    [SerializeField] GameLogic gameLogic;
-    void Awake()
+    void Start()
     {
-        gameObject.SetActive(false);
+        display = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = gameLogic.timer/gameLogic.playerTimer;
+        display.text = "Your Followers : " + GameLogic.playerHealth.ToString();
     }
-
 }
