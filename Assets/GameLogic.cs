@@ -127,6 +127,11 @@ public class GameLogic : MonoBehaviour
     {
         timerBar.SetActive(false);
 
+        inputs[0] = 0;
+        inputs[1] = 0;
+        inputs[2] = 0;
+        inputs[3] = 0;
+
         if(currentInput < 0) //berhasil hit semua
         {
             enemyHealth = (int) ( (float) enemyHealth * 0.66f); // -1/3
