@@ -53,7 +53,6 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.05f);
-            Debug.Log("HI");
         }
     }
 

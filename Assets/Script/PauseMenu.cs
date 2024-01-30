@@ -44,15 +44,23 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        Debug.Log("Opening Setttings...");
         settingsMenuUI.SetActive(true);
+        settingsMenuUI.GetComponent<Animator>().SetBool("IsOpened", true);
         IsSettingsOpened = true;
     }
 
     public void CloseSettings()
     {
-        settingsMenuUI.SetActive(false);
+        settingsMenuUI.GetComponent<Animator>().SetBool("IsOpened", false);
+        StartCoroutine(InactivateSettings());
         IsSettingsOpened = false;
+    }
+
+    IEnumerator InactivateSettings()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        Debug.Log("settings closed");
+        settingsMenuUI.SetActive(false);
     }
 
     public void QuitGame()
