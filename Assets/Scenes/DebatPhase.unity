@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 457350091}
+  gameLogic: {fileID: 1466939710}
 --- !u!1 &482949056
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,8 +868,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: 418}
-  m_SizeDelta: {x: 372.791, y: 69.518}
+  m_AnchoredPosition: {x: 403.6397, y: 418}
+  m_SizeDelta: {x: 1010.069, y: 69.518}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1284447951
 MonoBehaviour:
@@ -1199,7 +1200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputDisplay: {fileID: 828512127}
   timerBar: {fileID: 457350089}
-  round: 0
+  playerTimer: 10
+  enemyTimer: 2
+  maxRound: 2
+  timer: 0
 --- !u!4 &1466939711
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,8 +1255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -747, y: 418}
-  m_SizeDelta: {x: 372.791, y: 69.518}
+  m_AnchoredPosition: {x: -528.8611, y: 418}
+  m_SizeDelta: {x: 809.069, y: 69.518}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767321509
 MonoBehaviour:
