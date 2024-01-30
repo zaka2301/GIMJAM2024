@@ -10,18 +10,6 @@ public class SummaryText : MonoBehaviour
     // Start is called before the first frame update
     private int baseFollowers;
     private int followerGain = 0;
-    void Start()
-    {
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
 
     public IEnumerator CountGain()
