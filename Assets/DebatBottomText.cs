@@ -11,8 +11,15 @@ public class DebatBottomText : MonoBehaviour
     private static string displayText = "Use a card or press any arrow to start debate.";
     static Dictionary<string, string> cardDescription = new Dictionary<string, string>()
     {
-     {"A1", "Lempar Sembako : Throws object to your opponent, deals damage to opponent"},
-     {"A2", "Hypnotize : Throw your opponent off, decreases opponent damage"}
+     {"A1", "Sembako Throw : Send a groceries attack bought by emak-emak, deals damage to opponent"},
+     {"A2", "Santet Dukun Klenik : Throw your opponent off, decreases opponent damage"},
+     {"A3", "Mic Mute : Skips 1 enemy turn"},
+     {"D1", "Rugi dong / yang bener aje : Slows down the timer bar on next turn"},
+     {"D2", "Followers Roar : Increases player damage for the next turn"},
+     {"D3", "We'll be right back : Increases player's follower and skips a whole round (2 turns)"},
+     {"S1", "Fitnah : Decreases player's followers, deals great amount of damage to opponent"},
+     {"S2", "Summon Ketua Partai : Deals great damage to opponent"},
+     {"S3", "Buzzer Service : Increases followers greatly"}
     };
     // Start is called before the first frame update
     void Start()
@@ -32,11 +39,14 @@ public class DebatBottomText : MonoBehaviour
         {
             switch (card)
             {
-                case "Card1":
+                case "CardSlot1":
                     displayText = cardDescription["A1"];
                     break;
-                case "Card2":
-                    displayText = cardDescription["A2"];
+                case "CardSlot2":
+                    displayText = cardDescription["D2"];
+                    break;
+                case "CardSlot3":
+                    displayText = cardDescription["S3"];
                     break;
                 default:
                     break;

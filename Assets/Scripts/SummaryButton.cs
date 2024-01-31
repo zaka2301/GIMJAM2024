@@ -13,6 +13,8 @@ public class SummaryButton : MonoBehaviour
     [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip loseSFX;
 
+    [SerializeField] AudioSource musicPlayer;
+
     
     public void Retry()
     {
@@ -30,6 +32,7 @@ public class SummaryButton : MonoBehaviour
         float a = 0.0f;
         while(a <= 1.0f)
         {
+            musicPlayer.volume = 1.0f - a;
             blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
             a += Time.deltaTime;
             yield return null;
