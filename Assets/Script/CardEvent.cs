@@ -5,9 +5,10 @@ using TMPro;
 
 public class CardEvent : MonoBehaviour
 {
-
-    [SerializeField] float[] rarityChance;
+    [SerializeField] string[] cardNames;
+    [SerializeField] float[] cardWeights;
     [SerializeField] TextMeshProUGUI cardCountDownText;
+    [SerializeField] GameObject cardObject;
     private bool IsCardEvent;
     private int followerStart;
 
@@ -16,12 +17,6 @@ public class CardEvent : MonoBehaviour
         IsCardEvent = true;
         followerStart = ClickerBehaviour.followers;
         StartCoroutine(CardEventCountDown(10));
-    }
-
-    public void EndCardEvent()
-    {
-        IsCardEvent = false;
-        cardCountDownText.text = "You have gained " + (ClickerBehaviour.followers - followerStart) + "new followers!";
     }
 
     IEnumerator CardEventCountDown(int time)
@@ -41,60 +36,31 @@ public class CardEvent : MonoBehaviour
         cardCountDownText.text = "Card Event: " + time;
     }
 
-    public void CardRandomizer()
+    public void EndCardEvent()
     {
-        float RNG = Random.Range(0f, 1f);
-        if (RNG <= rarityChance[0])
+        IsCardEvent = false;
+        cardObject.SetActive(true);
+        cardObject.GetComponent<Animator>().SetTrigger("GotCard");
+        cardCountDownText.text = "You got " + (cardNames[CardRandomizerIndex()]);
+    }
+
+    int CardRandomizerIndex()
+    {
+        float weightSum = 0f;
+
+        foreach (float weight in cardWeights)
         {
-            float RNG2 = Random.Range(0, 3);
-            switch (RNG2)
-            {
-                case 0:
-                    Debug.Log ("Attack tier 1");
-                    break;
-                case 1:
-                    Debug.Log ("Defend tier 1");
-                    break;
-                case 2:
-                    Debug.Log ("Heal tier 1");
-                    break;
-            }
+            weightSum += weight;
         }
-        else if (RNG <= rarityChance[0] + rarityChance[1])
+
+        int selectedIndex = 0;
+        float RNG = Random.Range(0f, weightSum);
+        while (cardWeights[selectedIndex] <= RNG | cardWeights[selectedIndex] == 0)
         {
-            float RNG2 = Random.Range(0, 3);
-            switch (RNG2)
-            {
-                case 0:
-                    Debug.Log ("Attack tier 2");
-                    break;
-                case 1:
-                    Debug.Log ("Defend tier 2");
-                    break;
-                case 2:
-                    Debug.Log ("Heal tier 2");
-                    break;
-            }
+            RNG -= cardWeights[selectedIndex];
+            selectedIndex++;
         }
-        else if (RNG <= rarityChance[0] + rarityChance[1] + rarityChance[2])
-        {
-            float RNG2 = Random.Range(0, 3);
-            switch (RNG2)
-            {
-                case 0:
-                    Debug.Log ("Attack tier 3");
-                    break;
-                case 1:
-                    Debug.Log ("Defend tier 3");
-                    break;
-                case 2:
-                    Debug.Log ("Heal tier 3");
-                    break;
-            }
-        }
-        else
-        {
-            Debug.Log ("Special");
-        }
+        cardWeights[selectedIndex] = 0;
+        return selectedIndex;
     }
 }

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ClickerBehaviour : MonoBehaviour
 {
     public static int followers {get; private set; }
     [SerializeField] TextMeshProUGUI followerText;
+    [SerializeField] GameObject followerSlider;
     [SerializeField] int followerGain;
+    [SerializeField] int maxFollowers;
 
     void Update()
     {
@@ -20,6 +23,7 @@ public class ClickerBehaviour : MonoBehaviour
 
     void UpdateUI()
     {
-        followerText.text = "Followers: " + followers;
+        followerText.text = "" + followers;
+        followerSlider.GetComponent<Slider>().value = (float) followers / (float) maxFollowers;
     }
 }
