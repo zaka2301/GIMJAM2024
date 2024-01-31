@@ -45,7 +45,7 @@ public class GameLogic : MonoBehaviour
 
     public static int turn = 0;
 
-    int maxTurn = 1;
+    int maxTurn = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +59,7 @@ public class GameLogic : MonoBehaviour
         playerBaseHealth = playerHealth;
 
         audioSource = GetComponent<AudioSource>();
-
+        StartCoroutine(debatBar.UpdateBar());
         StartCoroutine(OnFinishPlayerTurn());
 
     }
@@ -127,6 +127,8 @@ public class GameLogic : MonoBehaviour
 
         turn += 1;
         skips = skips == 0 ? skips : skips - 1;
+
+        StartCoroutine(debatBar.UpdateBar());
   
         yield return new WaitForSeconds(2.0f);
 
@@ -239,6 +241,8 @@ public class GameLogic : MonoBehaviour
         timerMultiplier = 1.0f;
         enemyDamageMultiplier = 1.0f;
         }
+        StartCoroutine(debatBar.UpdateBar());
+        
         yield return new WaitForSeconds(2.0f);
         if(turn == maxTurn * 2) //debat selesai
         {
