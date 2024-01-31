@@ -8,22 +8,24 @@ public class GameLogic : MonoBehaviour
 
     [SerializeField] InputDisplay inputDisplay;
     [SerializeField] Animator summaryScreen;
-    [SerializeField] GameObject timerBar;
-    [SerializeField] public float playerTimer;
-    [SerializeField] public float enemyTimer;
+
+    public static float playerTimer;
+    public static float enemyTimer;
     [SerializeField] public int maxRound;
     [SerializeField] Image blackScreen;
+    [SerializeField] GameObject timerBar;
 
     [SerializeField] AudioClip gibberish1;
     [SerializeField] AudioClip gibberish2;
     [SerializeField] AudioClip gibberish3;
     [SerializeField] AudioClip gibberish4;
 
-    AudioSource audioSource;
-    public float timer;
+    static AudioSource audioSource;
+    public static float timer;
     public static bool isPlayerTurn = true;
     public static bool doDebat = false;
     public static bool onBreak = false;
+    public static bool isUsingCard = false;
     public static int[] inputs = new int[4]{0,0,0,0};
     public static int currentInput;
     public static int playerHealth;
@@ -43,9 +45,13 @@ public class GameLogic : MonoBehaviour
         enemyHealth = 100;
         round = 0;
 
+        playerTimer = 2.0f;
+        enemyTimer = 2.0f;
+
         playerBaseHealth = playerHealth;
 
         audioSource = GetComponent<AudioSource>();
+
     }
 
     private void RandomizeInput()
@@ -124,6 +130,7 @@ public class GameLogic : MonoBehaviour
                         if(timer <= 0 || currentInput < 0)
                         {
                             timer = 0.0f;
+                            timerBar.SetActive(false);
                             StartCoroutine(OnFinishPlayerTurn());
                         }
                         else
@@ -131,7 +138,7 @@ public class GameLogic : MonoBehaviour
                             timer -= Time.deltaTime;
                         }
                     }
-                    else
+                    else if(!isUsingCard)
                     {
                         if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                         {
@@ -140,6 +147,7 @@ public class GameLogic : MonoBehaviour
 
                         }
                     }
+
                 }
 
                 else // enemy turn
@@ -160,28 +168,31 @@ public class GameLogic : MonoBehaviour
   
     }
 
-    private IEnumerator OnFinishPlayerTurn()
+    public static IEnumerator OnFinishPlayerTurn()
     {
         onBreak = true;
         
-        timerBar.SetActive(false);
+        
 
         inputs[0] = 0;
         inputs[1] = 0;
         inputs[2] = 0;
         inputs[3] = 0;
 
-        if(currentInput < 0) //berhasil hit semua
+        if(!isUsingCard)
         {
-            int damage = (int) ( (float) enemyHealth * 0.33f); // -1/3
-            playerHealth += damage; // * x%
-            enemyHealth -= damage;
-        }
-        else
-        {
-            int damage = (int) ( (float) playerHealth * 0.20f); // -1/5
-            playerHealth -= damage;
-            enemyHealth += damage;
+            if(currentInput < 0) //berhasil hit semua
+            {
+                int damage = (int) ( (float) enemyHealth * 0.33f); // -1/3
+                playerHealth += damage; // * x%
+                enemyHealth -= damage;
+            }
+            else
+            {
+                int damage = (int) ( (float) playerHealth * 0.20f); // -1/5
+                playerHealth -= damage;
+                enemyHealth += damage;
+            }
         }
 
 
@@ -192,7 +203,7 @@ public class GameLogic : MonoBehaviour
         onBreak = false;
 
         timer = enemyTimer; //timer for enemy
-
+        isUsingCard = false;
         doDebat = false;
         isPlayerTurn = false;
         audioSource.Play();
@@ -231,13 +242,23 @@ public class GameLogic : MonoBehaviour
         inputDisplay.SetUp();
     }
 
-    IEnumerator BlackScreen()
+    public IEnumerator BlackScreen()
     {
         float a = 0.0f;
         while(a < 0.6f)
         {
             blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
             a += Time.deltaTime;
+            yield return null;
+        }
+    }
+    public IEnumerator UnBlackScreen()
+    {
+        float a = 0.6f;
+        while(a > 0.0f)
+        {
+            blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
+            a -= Time.deltaTime;
             yield return null;
         }
     }
