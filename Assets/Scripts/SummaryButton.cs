@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class SummaryButton : MonoBehaviour
 {
     [SerializeField] Image blackScreen;
+    [SerializeField] GameObject cutscene;
+    [SerializeField] Sprite win;
+    [SerializeField] Sprite lose;
 
     
     public void Retry()
@@ -30,7 +33,8 @@ public class SummaryButton : MonoBehaviour
             yield return null;
         }
         //load cutscne
-        Debug.Log("cutscene");
+        cutscene.GetComponent<Image>().sprite = win;
+        cutscene.SetActive(true);
 
 
         while(a >= 0.0f)
