@@ -1814,6 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ec7f7c208a8b7489b6c0f79f66cf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameLogic: {fileID: 1466939710}
   cardDestination: {fileID: 1256277005}
   cardDestination2: {fileID: 253777992}
 --- !u!1 &1139781161
@@ -1976,7 +1977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: f
+  m_text: sdfsfadfsdasfd
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9edff265cfb24043919ff75c8b3beee, type: 2}
   m_sharedMaterial: {fileID: 3851578003853112209, guid: e9edff265cfb24043919ff75c8b3beee, type: 2}
@@ -2858,6 +2859,7 @@ MonoBehaviour:
   maxRound: 2
   blackScreen: {fileID: 1630825988}
   timerBar: {fileID: 457350089}
+  debatBar: {fileID: 472140151}
   gibberish1: {fileID: 8300000, guid: b44dfeeffc33cb4429f04ac9f4514711, type: 3}
   gibberish2: {fileID: 8300000, guid: fadb9b18481748149b3cf20fe29b5fa8, type: 3}
   gibberish3: {fileID: 8300000, guid: 363f49cd8ca56174d9407dd43cb35939, type: 3}

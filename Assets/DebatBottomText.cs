@@ -8,7 +8,12 @@ public class DebatBottomText : MonoBehaviour
     TextMeshProUGUI bottomText;
 
     private static bool isHover = false;
-    private static string displayText;
+    private static string displayText = "Use a card or press any arrow to start debate.";
+    static Dictionary<string, string> cardDescription = new Dictionary<string, string>()
+    {
+     {"A1", "Lempar Sembako : Throws object to your opponent, deals damage to opponent"},
+     {"A2", "Hypnotize : Throw your opponent off, decreases opponent damage"}
+    };
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +33,10 @@ public class DebatBottomText : MonoBehaviour
             switch (card)
             {
                 case "Card1":
-                    displayText = "A1 NIH BOS";
+                    displayText = cardDescription["A1"];
                     break;
                 case "Card2":
-                    displayText = "A2 NIH BOS";
+                    displayText = cardDescription["A2"];
                     break;
                 default:
                     break;

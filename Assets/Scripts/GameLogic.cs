@@ -14,6 +14,7 @@ public class GameLogic : MonoBehaviour
     [SerializeField] public int maxRound;
     [SerializeField] Image blackScreen;
     [SerializeField] GameObject timerBar;
+    [SerializeField] DebatBar debatBar;
 
     [SerializeField] AudioClip gibberish1;
     [SerializeField] AudioClip gibberish2;
@@ -33,17 +34,24 @@ public class GameLogic : MonoBehaviour
 
     public static int enemyHealth;
 
+    public static float playerDamageMultiplier = 1.0f;
+    public static float enemyDamageMultiplier = 1.0f;
+
+    public static float timerMultiplier = 1.0f;
+    public static int skips = 0;
+
 
     private int mistakeCount = 0;
 
-    public static int round = 0;
+    public static int turn = 0;
+
+    int maxTurn = 5;
     // Start is called before the first frame update
     void Start()
     {
         //probably use Playerpref here
         playerHealth = 100;
         enemyHealth = 100;
-        round = 0;
 
         playerTimer = 2.0f;
         enemyTimer = 2.0f;
@@ -51,6 +59,7 @@ public class GameLogic : MonoBehaviour
         playerBaseHealth = playerHealth;
 
         audioSource = GetComponent<AudioSource>();
+        //StartCoroutine(debatBar.UpdateBar());
 
     }
 
@@ -88,17 +97,31 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(round == 0) //sebelum mulai
+        if(turn == 0) //sebelum mulai
         {
            StartCoroutine(SetUpPlayerTurn());
             
         }
-        else if(round > maxRound) //debat selesai
+        else if(turn > maxTurn * 2) //debat selesai
         {
             //do something per frame here idk
         }
+        else if(skips > 0)
+        {
+
+            if(isPlayerTurn)
+            {
+                StartCoroutine(OnFinishPlayerTurn());
+            }
+            else
+            {
+                StartCoroutine(SetUpPlayerTurn());
+            }
+            skips -= 1;
+        }
         else
         {
+
             if(!onBreak)
             {
                 if(isPlayerTurn)
@@ -130,8 +153,9 @@ public class GameLogic : MonoBehaviour
                         if(timer <= 0 || currentInput < 0)
                         {
                             timer = 0.0f;
-                            timerBar.SetActive(false);
+                            
                             StartCoroutine(OnFinishPlayerTurn());
+                            
                         }
                         else
                         {
@@ -168,35 +192,35 @@ public class GameLogic : MonoBehaviour
   
     }
 
-    public static IEnumerator OnFinishPlayerTurn()
+    public IEnumerator OnFinishPlayerTurn()
     {
         onBreak = true;
-        
-        
+        timerBar.SetActive(false);
+        turn += 1;
 
         inputs[0] = 0;
         inputs[1] = 0;
         inputs[2] = 0;
         inputs[3] = 0;
 
-        if(!isUsingCard)
+        if(!isUsingCard && skips == 0)
         {
             if(currentInput < 0) //berhasil hit semua
             {
-                int damage = (int) ( (float) enemyHealth * 0.33f); // -1/3
+                int damage = (int) ( (float) enemyHealth * 0.33f * playerDamageMultiplier); // -1/3
                 playerHealth += damage; // * x%
                 enemyHealth -= damage;
             }
             else
             {
-                int damage = (int) ( (float) playerHealth * 0.20f); // -1/5
+                int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
                 playerHealth -= damage;
                 enemyHealth += damage;
             }
         }
+    
 
-
-
+        //StartCoroutine(debatBar.UpdateBar());
 
         yield return new WaitForSeconds(2.0f);
         //set up enemy turn
@@ -206,18 +230,29 @@ public class GameLogic : MonoBehaviour
         isUsingCard = false;
         doDebat = false;
         isPlayerTurn = false;
-        audioSource.Play();
+
+        if(skips == 0)
+        {
+            audioSource.Play();
+            Debug.Log("enemy : my turn");
+        }
     }
 
     private IEnumerator SetUpPlayerTurn()
     {
         audioSource.Stop();
-        round += 1;
+        turn += 1;
         onBreak = true;
-
+        //StartCoroutine(debatBar.UpdateBar());
+        if(skips > 0)
+        {
+            int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+            playerHealth -= damage;
+            enemyHealth += damage;
+        }
         yield return new WaitForSeconds(2.0f);
 
-        if(round > maxRound) //debat selesai
+        if(turn > maxTurn * 2) //debat selesai
         {
             summaryScreen.enabled = true;
             StartCoroutine(BlackScreen());
@@ -225,9 +260,14 @@ public class GameLogic : MonoBehaviour
             yield break; //selesai, gausah setup
         }
 
+        playerDamageMultiplier = 1.0f;
+        enemyDamageMultiplier = 1.0f;
+
         onBreak = false;
 
         isPlayerTurn = true;
+
+        
     }
 
     private void SetUpDebateInput()
