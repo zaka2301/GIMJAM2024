@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
@@ -11,8 +12,10 @@ public class GameLogic : MonoBehaviour
     [SerializeField] public float playerTimer;
     [SerializeField] public float enemyTimer;
     [SerializeField] public int maxRound;
+    [SerializeField] Image blackScreen;
     public float timer;
     public static bool isPlayerTurn = true;
+    public static bool doDebat = false;
     public static int[] inputs = new int[4]{0,0,0,0};
     public static int currentInput;
     public static int playerHealth;
@@ -71,10 +74,8 @@ public class GameLogic : MonoBehaviour
     {
         if(round == 0) //sebelum mulai
         {
-            if (Input.anyKey)
-            {
-                SetUpPlayerTurn();
-            }
+           SetUpPlayerTurn();
+            
         }
         else if(round > maxRound) //debat selesai
         {
@@ -84,32 +85,43 @@ public class GameLogic : MonoBehaviour
         {
             if(isPlayerTurn)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if(doDebat)
                 {
-                    KeyPress(1);
-                }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    KeyPress(2);
-                }
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    KeyPress(3);
-                }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    KeyPress(4);
-                }
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        KeyPress(1);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        KeyPress(2);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        KeyPress(3);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        KeyPress(4);
+                    }
 
 
-                if(timer <= 0 || currentInput < 0)
-                {
-                    timer = 0.0f;
-                    OnFinishPlayerTurn();
+                    if(timer <= 0 || currentInput < 0)
+                    {
+                        timer = 0.0f;
+                        OnFinishPlayerTurn();
+                    }
+                    else
+                    {
+                        timer -= Time.deltaTime;
+                    }
                 }
                 else
                 {
-                    timer -= Time.deltaTime;
+                    if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        doDebat = true;
+                        SetUpDebateInput();
+                    }
                 }
             }
 
@@ -158,6 +170,7 @@ public class GameLogic : MonoBehaviour
 
 
         isPlayerTurn = false;
+        doDebat = false;
     }
 
     private void SetUpPlayerTurn()
@@ -167,12 +180,16 @@ public class GameLogic : MonoBehaviour
         if(round > maxRound) //debat selesai
         {
             summaryScreen.enabled = true;
+            StartCoroutine(BlackScreen());
 
             return; //selesai, gausah setup
         }
 
         isPlayerTurn = true;
+    }
 
+    private void SetUpDebateInput()
+    {
         timerBar.SetActive(true);
         timer = playerTimer;
 
@@ -181,5 +198,16 @@ public class GameLogic : MonoBehaviour
 
         RandomizeInput();
         inputDisplay.SetUp();
+    }
+
+    IEnumerator BlackScreen()
+    {
+        float a = 0.0f;
+        while(a < 0.6f)
+        {
+            blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
+            a += Time.deltaTime;
+            yield return null;
+        }
     }
 }
