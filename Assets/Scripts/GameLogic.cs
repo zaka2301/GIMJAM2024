@@ -60,6 +60,7 @@ public class GameLogic : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         //StartCoroutine(debatBar.UpdateBar());
+        StartCoroutine(SetUpPlayerTurn());
 
     }
 
@@ -94,37 +95,62 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator OnFinishPlayerTurn()
     {
-        if(turn == 0) //sebelum mulai
-        {
-           StartCoroutine(SetUpPlayerTurn());
-            
-        }
-        else if(turn > maxTurn * 2) //debat selesai
-        {
-            //do something per frame here idk
-        }
-        else if(skips > 0)
-        {
+        timer = enemyTimer;
 
-            if(isPlayerTurn)
+        audioSource.Play();
+        
+        while(skips == 0)
+        {
+            if(timer <= 0)
             {
-                StartCoroutine(OnFinishPlayerTurn());
+                timer = 0.0f;
+                break;
             }
             else
             {
-                StartCoroutine(SetUpPlayerTurn());
+                timer -= Time.deltaTime;
+                
             }
-            skips -= 1;
+            yield return null;
         }
-        else
-        {
+        audioSource.Stop();
+        
 
-            if(!onBreak)
-            {
-                if(isPlayerTurn)
+        //StartCoroutine(debatBar.UpdateBar());
+        if(skips == 0)
+        {
+            int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+            playerHealth -= damage;
+            enemyHealth += damage;
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        if(turn > maxTurn * 2) //debat selesai
+        {
+            summaryScreen.enabled = true;
+            StartCoroutine(BlackScreen());
+
+            yield break; //selesai, gausah setup
+        }
+
+        turn += 1;
+        skips = skips == 0 ? skips : skips - 1;
+        Debug.Log(skips);
+
+        StartCoroutine(SetUpPlayerTurn());
+        yield break;
+    }
+
+    private IEnumerator SetUpPlayerTurn()
+    {
+
+        isPlayerTurn = true;
+        timer = playerTimer;
+
+        while(isPlayerTurn && skips == 0)
                 {
                     if(doDebat)
                     {
@@ -154,7 +180,7 @@ public class GameLogic : MonoBehaviour
                         {
                             timer = 0.0f;
                             
-                            StartCoroutine(OnFinishPlayerTurn());
+                            break;
                             
                         }
                         else
@@ -171,103 +197,58 @@ public class GameLogic : MonoBehaviour
 
                         }
                     }
-
-                }
-
-                else // enemy turn
-
-                {
-                    if(timer <= 0)
-                    {
-                        timer = 0.0f;
-                        StartCoroutine(SetUpPlayerTurn());
-                    }
                     else
                     {
-                        timer -= Time.deltaTime;
+                        yield return new WaitForSeconds(1.0f);
+                        break;
                     }
+                    
+                    yield return null;
+
+                }
+
+            if(!isUsingCard && skips == 0)
+            {
+                if(currentInput < 0) //berhasil hit semua
+                {
+                    int damage = (int) ( (float) enemyHealth * 0.33f * playerDamageMultiplier); // -1/3
+                    playerHealth += damage; // * x%
+                    enemyHealth -= damage;
+                }
+                else
+                {
+                    int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+                    playerHealth -= damage;
+                    enemyHealth += damage;
                 }
             }
-        }   
-  
-    }
+            timerBar.SetActive(false);
+            
+            inputs[0] = 0;
+            inputs[1] = 0;
+            inputs[2] = 0;
+            inputs[3] = 0;
 
-    public IEnumerator OnFinishPlayerTurn()
-    {
-        onBreak = true;
-        timerBar.SetActive(false);
-        turn += 1;
+            isPlayerTurn = false;
+            isUsingCard = false;
+            doDebat = false;
 
-        inputs[0] = 0;
-        inputs[1] = 0;
-        inputs[2] = 0;
-        inputs[3] = 0;
+            turn += 1;
+            skips = skips == 0 ? skips : skips - 1;
 
-        if(!isUsingCard && skips == 0)
-        {
-            if(currentInput < 0) //berhasil hit semua
+            yield return new WaitForSeconds(2.0f);
+            if(turn > maxTurn * 2) //debat selesai
             {
-                int damage = (int) ( (float) enemyHealth * 0.33f * playerDamageMultiplier); // -1/3
-                playerHealth += damage; // * x%
-                enemyHealth -= damage;
+                summaryScreen.enabled = true;
+                StartCoroutine(BlackScreen());
+
+                yield break; //selesai, gausah setup
             }
-            else
-            {
-                int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
-                playerHealth -= damage;
-                enemyHealth += damage;
-            }
-        }
-    
 
-        //StartCoroutine(debatBar.UpdateBar());
 
-        yield return new WaitForSeconds(2.0f);
-        //set up enemy turn
-        onBreak = false;
+            StartCoroutine(OnFinishPlayerTurn());
+            yield break;
 
-        timer = enemyTimer; //timer for enemy
-        isUsingCard = false;
-        doDebat = false;
-        isPlayerTurn = false;
-
-        if(skips == 0)
-        {
-            audioSource.Play();
-            Debug.Log("enemy : my turn");
-        }
-    }
-
-    private IEnumerator SetUpPlayerTurn()
-    {
-        audioSource.Stop();
-        turn += 1;
-        onBreak = true;
-        //StartCoroutine(debatBar.UpdateBar());
-        if(skips > 0)
-        {
-            int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
-            playerHealth -= damage;
-            enemyHealth += damage;
-        }
-        yield return new WaitForSeconds(2.0f);
-
-        if(turn > maxTurn * 2) //debat selesai
-        {
-            summaryScreen.enabled = true;
-            StartCoroutine(BlackScreen());
-
-            yield break; //selesai, gausah setup
-        }
-
-        playerDamageMultiplier = 1.0f;
-        enemyDamageMultiplier = 1.0f;
-
-        onBreak = false;
-
-        isPlayerTurn = true;
-
-        
     }
 
     private void SetUpDebateInput()

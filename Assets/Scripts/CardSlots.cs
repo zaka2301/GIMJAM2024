@@ -68,7 +68,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
 
-        StartCoroutine(_gameLogic.OnFinishPlayerTurn());
+        //StartCoroutine(_gameLogic.OnFinishPlayerTurn());
 
         oPos = card.transform.position;
         while(t < 1.0f)
