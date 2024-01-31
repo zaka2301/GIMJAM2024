@@ -137,7 +137,7 @@ public class GameLogic : MonoBehaviour
                         {
                             doDebat = true;
                             SetUpDebateInput();
-                            audioSource.Play();
+
                         }
                     }
                 }
@@ -184,7 +184,6 @@ public class GameLogic : MonoBehaviour
             enemyHealth += damage;
         }
 
-        audioSource.Stop();
 
 
 
