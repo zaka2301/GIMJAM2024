@@ -10,6 +10,8 @@ public class SummaryButton : MonoBehaviour
     [SerializeField] GameObject cutscene;
     [SerializeField] Sprite win;
     [SerializeField] Sprite lose;
+    [SerializeField] AudioClip winSFX;
+    [SerializeField] AudioClip loseSFX;
 
     
     public void Retry()
@@ -33,7 +35,9 @@ public class SummaryButton : MonoBehaviour
             yield return null;
         }
         //load cutscne
+        //if(){}
         cutscene.GetComponent<Image>().sprite = win;
+        cutscene.GetComponent<AudioSource>().clip = winSFX;
         cutscene.SetActive(true);
 
 

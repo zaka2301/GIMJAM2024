@@ -20,7 +20,7 @@ public class SummaryText : MonoBehaviour
         followerGain = GameLogic.playerHealth - baseFollowers;
         int i = (int) Mathf.Sign(followerGain);
 
-        Debug.Log(followerGain);
+
 
         int follower = 0;
 

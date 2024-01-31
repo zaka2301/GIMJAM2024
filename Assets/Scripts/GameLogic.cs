@@ -13,9 +13,17 @@ public class GameLogic : MonoBehaviour
     [SerializeField] public float enemyTimer;
     [SerializeField] public int maxRound;
     [SerializeField] Image blackScreen;
+
+    [SerializeField] AudioClip gibberish1;
+    [SerializeField] AudioClip gibberish2;
+    [SerializeField] AudioClip gibberish3;
+    [SerializeField] AudioClip gibberish4;
+
+    AudioSource audioSource;
     public float timer;
     public static bool isPlayerTurn = true;
     public static bool doDebat = false;
+    public static bool onBreak = false;
     public static int[] inputs = new int[4]{0,0,0,0};
     public static int currentInput;
     public static int playerHealth;
@@ -36,6 +44,8 @@ public class GameLogic : MonoBehaviour
         round = 0;
 
         playerBaseHealth = playerHealth;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void RandomizeInput()
@@ -74,7 +84,7 @@ public class GameLogic : MonoBehaviour
     {
         if(round == 0) //sebelum mulai
         {
-           SetUpPlayerTurn();
+           StartCoroutine(SetUpPlayerTurn());
             
         }
         else if(round > maxRound) //debat selesai
@@ -83,67 +93,77 @@ public class GameLogic : MonoBehaviour
         }
         else
         {
-            if(isPlayerTurn)
+            if(!onBreak)
             {
-                if(doDebat)
+                if(isPlayerTurn)
                 {
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    if(doDebat)
                     {
-                        KeyPress(1);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                    {
-                        KeyPress(2);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        KeyPress(3);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.RightArrow))
-                    {
-                        KeyPress(4);
-                    }
+                        if (Input.GetKeyDown(KeyCode.UpArrow))
+                        {
+                            audioSource.PlayOneShot(gibberish1, 1.0f);
+                            KeyPress(1);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                        {
+                            audioSource.PlayOneShot(gibberish2, 1.0f);
+                            KeyPress(2);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.DownArrow))
+                        {
+                            audioSource.PlayOneShot(gibberish3, 1.0f);
+                            KeyPress(3);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.RightArrow))
+                        {
+                            audioSource.PlayOneShot(gibberish4, 1.0f);
+                            KeyPress(4);
+                        }
 
 
-                    if(timer <= 0 || currentInput < 0)
+                        if(timer <= 0 || currentInput < 0)
+                        {
+                            timer = 0.0f;
+                            StartCoroutine(OnFinishPlayerTurn());
+                        }
+                        else
+                        {
+                            timer -= Time.deltaTime;
+                        }
+                    }
+                    else
+                    {
+                        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                        {
+                            doDebat = true;
+                            SetUpDebateInput();
+                            audioSource.Play();
+                        }
+                    }
+                }
+
+                else // enemy turn
+
+                {
+                    if(timer <= 0)
                     {
                         timer = 0.0f;
-                        OnFinishPlayerTurn();
+                        StartCoroutine(SetUpPlayerTurn());
                     }
                     else
                     {
                         timer -= Time.deltaTime;
                     }
                 }
-                else
-                {
-                    if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        doDebat = true;
-                        SetUpDebateInput();
-                    }
-                }
             }
-
-            else // enemy turn
-            
-            {
-                if(timer <= 0)
-                {
-                    timer = 0.0f;
-                    SetUpPlayerTurn();
-                }
-                else
-                {
-                    timer -= Time.deltaTime;
-                }
-            }
-        }
+        }   
   
     }
 
-    private void OnFinishPlayerTurn()
+    private IEnumerator OnFinishPlayerTurn()
     {
+        onBreak = true;
+        
         timerBar.SetActive(false);
 
         inputs[0] = 0;
@@ -164,26 +184,38 @@ public class GameLogic : MonoBehaviour
             enemyHealth += damage;
         }
 
+        audioSource.Stop();
+
+
+
+        yield return new WaitForSeconds(2.0f);
         //set up enemy turn
+        onBreak = false;
 
         timer = enemyTimer; //timer for enemy
 
-
-        isPlayerTurn = false;
         doDebat = false;
+        isPlayerTurn = false;
+        audioSource.Play();
     }
 
-    private void SetUpPlayerTurn()
+    private IEnumerator SetUpPlayerTurn()
     {
+        audioSource.Stop();
         round += 1;
+        onBreak = true;
+
+        yield return new WaitForSeconds(2.0f);
 
         if(round > maxRound) //debat selesai
         {
             summaryScreen.enabled = true;
             StartCoroutine(BlackScreen());
 
-            return; //selesai, gausah setup
+            yield break; //selesai, gausah setup
         }
+
+        onBreak = false;
 
         isPlayerTurn = true;
     }
