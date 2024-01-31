@@ -35,9 +35,15 @@ public class SummaryButton : MonoBehaviour
             yield return null;
         }
         //load cutscne
-        //if(){}
-        cutscene.GetComponent<Image>().sprite = win;
-        cutscene.GetComponent<AudioSource>().clip = winSFX;
+        if(GameLogic.playerHealth >= GameLogic.enemyHealth){
+            cutscene.GetComponent<Image>().sprite = win;
+            cutscene.GetComponent<AudioSource>().clip = winSFX;
+        }
+        else
+        {
+            cutscene.GetComponent<Image>().sprite = lose;
+            cutscene.GetComponent<AudioSource>().clip = loseSFX;
+        }
         cutscene.SetActive(true);
 
 

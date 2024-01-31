@@ -11,7 +11,6 @@ public class GameLogic : MonoBehaviour
 
     public static float playerTimer;
     public static float enemyTimer;
-    [SerializeField] public int maxRound;
     [SerializeField] Image blackScreen;
     [SerializeField] GameObject timerBar;
     [SerializeField] DebatBar debatBar;
@@ -27,6 +26,7 @@ public class GameLogic : MonoBehaviour
     public static bool doDebat = false;
     public static bool onBreak = false;
     public static bool isUsingCard = false;
+    public static bool multiplierTurn = false;
     public static int[] inputs = new int[4]{0,0,0,0};
     public static int currentInput;
     public static int playerHealth;
@@ -45,7 +45,7 @@ public class GameLogic : MonoBehaviour
 
     public static int turn = 0;
 
-    int maxTurn = 5;
+    int maxTurn = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,7 +100,9 @@ public class GameLogic : MonoBehaviour
         timer = enemyTimer;
 
         audioSource.Play();
-        
+
+        Debug.Log("enemy turn");
+
         while(skips == 0)
         {
             if(timer <= 0)
@@ -125,10 +127,13 @@ public class GameLogic : MonoBehaviour
             playerHealth -= damage;
             enemyHealth += damage;
         }
+        turn += 1;
+        skips = skips == 0 ? skips : skips - 1;
+  
 
         yield return new WaitForSeconds(2.0f);
 
-        if(turn > maxTurn * 2) //debat selesai
+        if(turn == maxTurn * 2) //debat selesai
         {
             summaryScreen.enabled = true;
             StartCoroutine(BlackScreen());
@@ -136,9 +141,11 @@ public class GameLogic : MonoBehaviour
             yield break; //selesai, gausah setup
         }
 
-        turn += 1;
-        skips = skips == 0 ? skips : skips - 1;
-        Debug.Log(skips);
+
+
+        multiplierTurn = false;
+
+
 
         StartCoroutine(SetUpPlayerTurn());
         yield break;
@@ -199,6 +206,7 @@ public class GameLogic : MonoBehaviour
                     }
                     else
                     {
+                        multiplierTurn = true;
                         yield return new WaitForSeconds(1.0f);
                         break;
                     }
@@ -206,6 +214,7 @@ public class GameLogic : MonoBehaviour
                     yield return null;
 
                 }
+
 
             if(!isUsingCard && skips == 0)
             {
@@ -236,8 +245,16 @@ public class GameLogic : MonoBehaviour
             turn += 1;
             skips = skips == 0 ? skips : skips - 1;
 
+            //reeset multiplier
+            if(!multiplierTurn)
+            {
+            playerDamageMultiplier = 1.0f;
+            timerMultiplier = 1.0f;
+            enemyDamageMultiplier = 1.0f;
+            }
+
             yield return new WaitForSeconds(2.0f);
-            if(turn > maxTurn * 2) //debat selesai
+            if(turn == maxTurn * 2) //debat selesai
             {
                 summaryScreen.enabled = true;
                 StartCoroutine(BlackScreen());

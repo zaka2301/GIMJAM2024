@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] GameLogic _gameLogic;
     [SerializeField] GameObject cardDestination;
     [SerializeField] GameObject cardDestination2;
     private bool isHover = false;
@@ -54,21 +53,39 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         switch(card.name)
         {
             case "Card1":
+                /*A1
                 int damage = (int) ( (float) GameLogic.enemyHealth * 0.25f); // -1/4
-                //GameLogic.playerHealth -= damage;
                 GameLogic.enemyHealth -= damage;
+                */
+                /*D1
+                GameLogic.timerMultiplier = 0.5f;
+                */
+                GameLogic.playerHealth = (int) ( (float) GameLogic.playerHealth * 0.80f);
+                GameLogic.enemyHealth = (int) ( (float) GameLogic.enemyHealth * 0.60f);
                 break;
             case "Card2":
+                /*A2
                 GameLogic.enemyDamageMultiplier = 0.5f;
+                */
+                /*D2
+                GameLogic.playerDamageMultiplier = 1.2f;
+                */
+                GameLogic.enemyHealth = (int) ( (float) GameLogic.enemyHealth * 0.60f);
                 break;
             case "Card3":
+                /*A3
                 GameLogic.skips = 1;
+                */
+                /*D3
+                GameLogic.skips = 2;
+                */
+                GameLogic.playerHealth = (int) ( (float) GameLogic.playerHealth * 1.30f);
                 break;
 
         }
 
 
-        //StartCoroutine(_gameLogic.OnFinishPlayerTurn());
+
 
         oPos = card.transform.position;
         while(t < 1.0f)

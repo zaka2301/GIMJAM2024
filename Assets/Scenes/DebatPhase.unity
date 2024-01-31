@@ -1814,7 +1814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ec7f7c208a8b7489b6c0f79f66cf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameLogic: {fileID: 1466939710}
   cardDestination: {fileID: 1256277005}
   cardDestination2: {fileID: 253777992}
 --- !u!1 &1139781161
@@ -2856,7 +2855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputDisplay: {fileID: 828512127}
   summaryScreen: {fileID: 1504119844}
-  maxRound: 2
   blackScreen: {fileID: 1630825988}
   timerBar: {fileID: 457350089}
   debatBar: {fileID: 472140151}
@@ -4265,7 +4263,7 @@ MonoBehaviour:
   blackScreen: {fileID: 918029923}
   cutscene: {fileID: 2003877492}
   win: {fileID: 21300000, guid: fe16adcc9f2d2354eab7894fad15a882, type: 3}
-  lose: {fileID: 0}
+  lose: {fileID: 21300000, guid: 6e9d4ce4acd2ea4419ac3fb901a632b0, type: 3}
   winSFX: {fileID: 8300000, guid: b6323fbeda5502b4782c11d384ab8c5a, type: 3}
   loseSFX: {fileID: 8300000, guid: e8d76a35368369646858d420deb0f035, type: 3}
 --- !u!1 &1985450241

@@ -7,7 +7,7 @@ public class DebatBottomText : MonoBehaviour
 {
     TextMeshProUGUI bottomText;
 
-    private static bool isHover = false;
+
     private static string displayText = "Use a card or press any arrow to start debate.";
     static Dictionary<string, string> cardDescription = new Dictionary<string, string>()
     {
