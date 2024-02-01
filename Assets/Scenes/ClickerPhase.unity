@@ -158,12 +158,13 @@ MonoBehaviour:
   followerSlider: {fileID: 1477242841}
   popupPrefab: {fileID: 8455838106824641224, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}
   followerGain: 1
-  maxFollowers: 100
+  maxFollowers: 500
   bonusChance: 0.1
   bonusGain: 2
-  popupBloomRecovery: 0.7
-  popupBloomGain: 0.1
+  popupBloomRecovery: 1
+  popupBloomGain: 0.2
   maxPopupBloom: 1.5
+  nextUpgrade: 50
   popupBloom: 0.1
 --- !u!4 &186407453
 Transform:
@@ -178,7 +179,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &186407454
 MonoBehaviour:
@@ -310,7 +311,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &814177392
 GameObject:
@@ -410,7 +411,7 @@ RectTransform:
   - {fileID: 1126973458}
   - {fileID: 1022400403}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1966,7 +1967,7 @@ GameObject:
   - component: {fileID: 2048617615}
   - component: {fileID: 2048617614}
   m_Layer: 0
-  m_Name: TapPhaseBg1
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2105,7 +2106,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8455838107608879940
 PrefabInstance:

@@ -17,8 +17,9 @@ public class ClickerBehaviour : MonoBehaviour
     [SerializeField] float popupBloomRecovery;
     [SerializeField] float popupBloomGain;
     [SerializeField] float maxPopupBloom;
+    [SerializeField] int nextUpgrade;
 
-
+    private int upgrade = 1;
     public float popupBloom = 0.2f;
 
     void Update()
@@ -41,6 +42,10 @@ public class ClickerBehaviour : MonoBehaviour
                 CreatePopup((Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + followerGain);
             }
             UpdateUI();
+            if (followers >= nextUpgrade)
+            {
+                Upgrade();
+            }
         }
         if (popupBloom > 0.2f)
         {
@@ -52,6 +57,14 @@ public class ClickerBehaviour : MonoBehaviour
     {
         followerText.text = "" + followers;
         followerSlider.GetComponent<Slider>().value = (float) followers / (float) maxFollowers;
+    }
+
+    void Upgrade()
+    {
+        upgrade++;
+        nextUpgrade *= 2;
+        followerGain++;
+        CreatePopup(new Vector2(0, 0), "Setting Upgrade!");
     }
 
     void CreatePopup(Vector2 position, string text)
