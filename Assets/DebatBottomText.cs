@@ -46,7 +46,7 @@ public class DebatBottomText : MonoBehaviour
     public static void OnHoverCard(string card)
     {
 
-        if(card == " ")
+        if(card == "")
         {
             displayText = "";
         }

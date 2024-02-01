@@ -57,7 +57,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         isHover = false;
         buttonHovered = null;
         cardPreview.SetActive(false);
-        DebatBottomText.OnHoverCard(" ");
+        DebatBottomText.OnHoverCard("");
     }
 
 
@@ -109,8 +109,11 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
 
         isHover = false;
+        buttonHovered = null;
+        cardPreview.SetActive(false);
+        DebatBottomText.OnHoverCard("");
         GameLogic.isUsingCard = true;
-        GameLogic.cardUsed = PlayerPrefs.GetString(card.name);
+        GameLogic.cardUsed = "";
         card.transform.SetParent(card.transform.parent.transform.parent.transform.parent);//LMAO
 
         Vector2 oPos = card.transform.position;
@@ -174,6 +177,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             card.transform.position = new Vector2(Mathf.SmoothStep(oPos.x, cardDestination2.transform.position.x, t),Mathf.SmoothStep(oPos.y, cardDestination2.transform.position.y, t));
             yield return null;
         }
+        GameLogic.cardUsed = PlayerPrefs.GetString(card.name);
         card.SetActive(false);
  
     }

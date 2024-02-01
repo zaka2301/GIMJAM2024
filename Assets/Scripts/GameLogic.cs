@@ -255,8 +255,12 @@ public class GameLogic : MonoBehaviour
     
             canUseCard = false;
 
-            if(cardUsed != "")
+            if(isUsingCard)
             {
+                while(cardUsed == "")
+                {
+                    yield return null;
+                }
                 Debug.Log("cutscene");
                 yield return new WaitForSeconds(1.0f);
 
@@ -308,7 +312,7 @@ public class GameLogic : MonoBehaviour
                     default:
                         break;
                 }
-
+                
 
 
 
@@ -336,6 +340,7 @@ public class GameLogic : MonoBehaviour
                 }
                 else
                 {
+                    enemySkip = false;
                     StartCoroutine(PlayMidText("Mic Problem"));
                     yield return new WaitForSeconds(2.0f);
                     StartCoroutine(SetUpTurn());
