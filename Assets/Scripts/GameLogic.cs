@@ -26,7 +26,7 @@ public class GameLogic : MonoBehaviour
     [SerializeField] AudioClip hit2;
     [SerializeField] AudioClip hit3;
 
-    
+    [SerializeField] AudioClip koran;
 
     static AudioSource audioSource;
     public static float timer;
@@ -42,32 +42,46 @@ public class GameLogic : MonoBehaviour
 
     public static int enemyHealth;
 
-    public static float playerDamageMultiplier = 1.0f; //player damage to enemy
-    public static float enemyDamageMultiplier = 1.0f; // enemy damage to player
+    public static float playerDamageMultiplier; //player damage to enemy
+    public static float enemyDamageMultiplier;// enemy damage to player
 
 
     public static string cardUsed = "";
-    public static float timerMultiplier = 1.0f;
-    public static int skips = 0;
+    public static float timerMultiplier;
 
-    public static bool enemySkip = false;
-    public static bool roundSkip = false;
 
-    public static int playerHealthBonus = 0;
-    public static int playerHealthBajer = 0;
+    public static bool enemySkip; 
+    public static bool roundSkip;
+
+    public static int playerHealthBonus;
+    public static int playerHealthBajer;
 
     private static bool playerFirst;
 
 
-    private int mistakeCount = 0;
+    private int mistakeCount;
 
-    public static int turn = 0;
+    public static int turn;
 
     int maxTurn;
     int stage;
     // Start is called before the first frame update
     void Start()
     {
+        playerDamageMultiplier = 1.0f;
+        enemyDamageMultiplier = 1.0f;
+        timerMultiplier = 1.0f;
+
+        roundSkip = false;
+        enemySkip = false;
+        dukunTurn = false;
+
+        playerHealthBajer = 0;
+        playerHealthBonus = 0;
+
+        mistakeCount = 0;
+        turn = 0;
+
         stage = PlayerPrefs.GetInt("Stage", 1);
         switch(stage)
         {
@@ -87,7 +101,7 @@ public class GameLogic : MonoBehaviour
                 break;
         }
         
-
+        maxTurn = 1;
         playerHealth = PlayerPrefs.GetInt("Followers", 100);
         enemyHealth = 100;
 
@@ -195,7 +209,7 @@ public class GameLogic : MonoBehaviour
 
         StartCoroutine(debatBar.UpdateBar());
         turn += 1;
-        skips = skips == 0 ? skips : skips - 1;
+        //skips = skips == 0 ? skips : skips - 1;
         isUsingCard = false;
 
         Debug.Log(turn);
@@ -204,6 +218,7 @@ public class GameLogic : MonoBehaviour
 
         if(turn > maxTurn * 2) //debat selesai
         {
+            audioSource.PlayOneShot(koran, 1.0f);
             summaryScreen.enabled = true;
             StartCoroutine(BlackScreen());
 
@@ -239,70 +254,72 @@ public class GameLogic : MonoBehaviour
             yield return new WaitForSeconds(10.0f);
     
             canUseCard = false;
+
+            if(cardUsed != "")
+            {
+                Debug.Log("cutscene");
+                yield return new WaitForSeconds(1.0f);
+
+                //card effects
+
+                switch(cardUsed)
+                {
+                    case "A1":
+                        enemyHealth = (int) ( (float) enemyHealth * 0.80f); //-0.2%
+                        StartCoroutine(debatBar.UpdateBar(5.0f));
+                        yield return new WaitForSeconds(5.0f);
+                        break;
+                    case "A2":
+                        dukunTurn = true;
+                        enemyDamageMultiplier = 0.7f;
+                        break;
+                    case "A3":
+                        enemySkip = true;
+                        break;
+                    case "D1":
+                        timerMultiplier = 0.5f;
+                        break;
+                    case "D2":
+                        playerHealthBonus = (int) ( (float) playerHealth * 0.25f);
+                        playerHealth += playerHealthBonus;
+                        StartCoroutine(debatBar.UpdateBar());
+
+                        playerDamageMultiplier = 1.3f;
+                        break;
+                    case "D3":
+
+                        roundSkip = true;
+                        playerHealth += (int) ( (float) playerHealth * 0.30f);
+
+
+                        break;
+                    case "S1":
+                        playerHealth = (int) ( (float) playerHealth * 0.70f);
+                        playerDamageMultiplier = 2.0f;
+                        break;
+                    case "S2":
+                        playerHealthBajer = (int) ( (float) playerHealth * 0.30f);
+                        playerHealth += playerHealthBajer;
+                        StartCoroutine(debatBar.UpdateBar());
+                        break;
+                    case "S3":
+                        playerDamageMultiplier = 2.0f;
+                        break;
+                    default:
+                        break;
+                }
+
+
+
+
+                cardUsed  = "";
+            }
+
         }
 
         
 
 
-        if(cardUsed != "")
-        {
-            Debug.Log("cutscene");
-            yield return new WaitForSeconds(1.0f);
-
-            //card effects
-            
-            switch(cardUsed)
-            {
-                case "A1":
-                    enemyHealth = (int) ( (float) enemyHealth * 0.80f); //-0.2%
-                    StartCoroutine(debatBar.UpdateBar(5.0f));
-                    yield return new WaitForSeconds(5.0f);
-                    break;
-                case "A2":
-                    dukunTurn = true;
-                    enemyDamageMultiplier = 0.7f;
-                    break;
-                case "A3":
-                    enemySkip = true;
-                    break;
-                case "D1":
-                    timerMultiplier = 0.5f;
-                    break;
-                case "D2":
-                    playerHealthBonus = (int) ( (float) playerHealth * 0.25f);
-                    playerHealth += playerHealthBonus;
-                    StartCoroutine(debatBar.UpdateBar());
-
-                    playerDamageMultiplier = 1.3f;
-                    break;
-                case "D3":
-
-                    roundSkip = true;
-                    playerHealth += (int) ( (float) playerHealth * 0.30f);
-
-
-                    break;
-                case "S1":
-                    playerHealth = (int) ( (float) playerHealth * 0.70f);
-                    playerDamageMultiplier = 2.0f;
-                    break;
-                case "S2":
-                    playerHealthBajer = (int) ( (float) playerHealth * 0.30f);
-                    playerHealth += playerHealthBajer;
-                    StartCoroutine(debatBar.UpdateBar());
-                    break;
-                case "S3":
-                    playerDamageMultiplier = 2.0f;
-                    break;
-                default:
-                    break;
-            }
-            
-
-            
-
-            cardUsed  = "";
-        }
 
         if(playerFirst && !roundSkip)
         {
@@ -410,7 +427,7 @@ public class GameLogic : MonoBehaviour
         audioSource.Play();
 
         timer = enemyTimer;
-        while(skips == 0)
+        while(true)
         {
             if(timer <= 0)
             {
@@ -429,13 +446,11 @@ public class GameLogic : MonoBehaviour
         audioSource.Stop();
         
 
-        if(skips == 0)
-        {
-            PlayHitSound();
-            int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
-            playerHealth -= damage;
-            enemyHealth += damage;
-        }
+        PlayHitSound();
+        int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+        playerHealth -= damage;
+        enemyHealth += damage;
+
 
         StartCoroutine(SetUpTurn());
 
@@ -532,17 +547,6 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    bool CheckRoundEnd()
-    {
-        if(turn == maxTurn * 2) //debat selesai
-        {
-            summaryScreen.enabled = true;
-            StartCoroutine(BlackScreen());
-
-            return true; //selesai, gausah setup
-        }
-        return false;
-    }
 
     private void SetUpDebateInput()
     {

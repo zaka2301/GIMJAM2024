@@ -3082,6 +3082,7 @@ MonoBehaviour:
   hit1: {fileID: 8300000, guid: de8699ba2e9dd454b8b4e4892c257aa5, type: 3}
   hit2: {fileID: 8300000, guid: f9800e8bea032b044a4ab4e8f651d952, type: 3}
   hit3: {fileID: 8300000, guid: a5aef00df3f84d0459dca516278b6c99, type: 3}
+  koran: {fileID: 8300000, guid: 2fa66d151375dac49b657146dc29de43, type: 3}
 --- !u!4 &1466939711
 Transform:
   m_ObjectHideFlags: 0

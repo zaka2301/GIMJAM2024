@@ -35,7 +35,8 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {"D3", null},
         {"S1", null},
         {"S2", null},
-        {"S3", null}
+        {"S3", null},
+        {""  , null}
     };
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -84,6 +85,10 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         cardSlot1 = this.gameObject.transform.GetChild(0).gameObject;
         cardSlot2 = this.gameObject.transform.GetChild(1).gameObject;
         cardSlot3 = this.gameObject.transform.GetChild(2).gameObject;
+
+        cardSlot1.SetActive(!(PlayerPrefs.GetString("CardSlot1") == ""));
+        cardSlot2.SetActive(!(PlayerPrefs.GetString("CardSlot2") == ""));
+        cardSlot3.SetActive(!(PlayerPrefs.GetString("CardSlot3") == ""));
 
         cardSlot1.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot1")];
         cardSlot2.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot2")];

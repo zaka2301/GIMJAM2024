@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DebatPhase.unity
     guid: a00705226f09d804696412fccbff2ead
+  - enabled: 1
+    path: Assets/Scenes/PreDebat.unity
+    guid: 115b08ab2d7e4ff488282e3e8c8e63a4
   m_configObjects: {}
