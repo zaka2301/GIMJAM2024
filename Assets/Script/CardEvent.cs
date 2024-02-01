@@ -8,6 +8,7 @@ public class CardEvent : MonoBehaviour
 {
     [SerializeField] GameObject cardObject;
     [SerializeField] Image cardImage;
+    [SerializeField] string[] cardNames;
     [SerializeField] Sprite[] cardSprites;
     [SerializeField] float[] cardWeights;
     [SerializeField] TextMeshProUGUI cardCountDownText;
@@ -42,6 +43,7 @@ public class CardEvent : MonoBehaviour
     {
         IsCardEvent = false;
         int cardIndex = CardRandomizerIndex();
+        PlayerPrefs.SetInt(cardNames[cardIndex], 1);
         cardImage.sprite = cardSprites[cardIndex];
         cardObject.SetActive(true);
         cardObject.GetComponent<Animator>().SetTrigger("GotCard");
