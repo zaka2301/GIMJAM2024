@@ -80,7 +80,7 @@ public class GameLogic : MonoBehaviour
                 Debug.Log("No Stage");
                 break;
         }
-
+        
 
         playerHealth = PlayerPrefs.GetInt("Followers", 100);
         enemyHealth = 100;
@@ -359,13 +359,7 @@ public class GameLogic : MonoBehaviour
   
         yield return new WaitForSeconds(2.0f);
 
-        if(turn == maxTurn * 2) //debat selesai
-        {
-            summaryScreen.enabled = true;
-            StartCoroutine(BlackScreen());
-
-            yield break; //selesai, gausah setup
-        }
+        if(CheckRoundEnd()) {yield break;}
 
 
         
@@ -464,18 +458,25 @@ public class GameLogic : MonoBehaviour
         StartCoroutine(debatBar.UpdateBar());
         
         yield return new WaitForSeconds(2.0f);
-        if(turn == maxTurn * 2) //debat selesai
-        {
 
-            summaryScreen.enabled = true;
-            StartCoroutine(BlackScreen());
-            yield break; //selesai, gausah setup
-        }
+        if(CheckRoundEnd()) {yield break;}
 
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(SetUpTurn());
         yield break;
 
+    }
+
+    bool CheckRoundEnd()
+    {
+        if(turn == maxTurn * 2) //debat selesai
+        {
+            summaryScreen.enabled = true;
+            StartCoroutine(BlackScreen());
+
+            return true; //selesai, gausah setup
+        }
+        return false;
     }
 
     private void SetUpDebateInput()
