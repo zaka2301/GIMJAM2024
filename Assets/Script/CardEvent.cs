@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CardEvent : MonoBehaviour
 {
-    [SerializeField] string[] cardNames;
+    [SerializeField] GameObject cardObject;
+    [SerializeField] Image cardImage;
+    [SerializeField] Sprite[] cardSprites;
     [SerializeField] float[] cardWeights;
     [SerializeField] TextMeshProUGUI cardCountDownText;
-    [SerializeField] GameObject cardObject;
     private bool IsCardEvent;
     private int followerStart;
 
@@ -39,9 +41,11 @@ public class CardEvent : MonoBehaviour
     public void EndCardEvent()
     {
         IsCardEvent = false;
+        int cardIndex = CardRandomizerIndex();
+        cardImage.sprite = cardSprites[cardIndex];
         cardObject.SetActive(true);
         cardObject.GetComponent<Animator>().SetTrigger("GotCard");
-        cardCountDownText.text = "You got " + (cardNames[CardRandomizerIndex()]);
+        cardCountDownText.text = "";
     }
 
     int CardRandomizerIndex()
