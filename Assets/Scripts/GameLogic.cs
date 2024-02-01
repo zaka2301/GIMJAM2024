@@ -185,17 +185,52 @@ public class GameLogic : MonoBehaviour
     {
         if(turn % 2 == 0) // round change
         {
+            //reset multiplier
+            if(!dukunTurn)
+            {
+                enemyDamageMultiplier = 1.0f;
+            }
+            else
+            {
+                dukunTurn = false;
+
+            }
+            playerDamageMultiplier = 1.0f;
+            timerMultiplier = 1.0f;
+
+
             StartCoroutine(PlayMidText("Preparation"));
             canUseCard = true;
-            yield return new WaitForSeconds(5.0f);
-
+            audioSource.Play();
+            yield return new WaitForSeconds(10.0f);
+    
             canUseCard = false;
         }
+
+        
+
 
         if(cardUsed != "")
         {
             Debug.Log("cutscene");
             yield return new WaitForSeconds(5.0f);
+
+            //card effects
+            
+            switch(cardUsed)
+            {
+                case "A2":
+                    dukunTurn = true;
+                    enemyDamageMultiplier = 0.5f;
+                    break;
+                default:
+                    break;
+            }
+            
+
+            
+            Debug.Log(cardUsed);
+            cardUsed  = "";
         }
 
         if(playerFirst)
@@ -285,7 +320,8 @@ public class GameLogic : MonoBehaviour
 
     public IEnumerator OnFinishPlayerTurn()
     {
-        StartCoroutine(PlayMidText("Opponent's turn", 0.5f)); 
+        StartCoroutine(PlayMidText("Opponent's turn", 0.1f)); 
+        yield return new WaitForSeconds(2.0f);
         audioSource.Play();
 
         timer = enemyTimer;
@@ -341,11 +377,12 @@ public class GameLogic : MonoBehaviour
 
     private IEnumerator SetUpPlayerTurn()
     {
-        StartCoroutine(PlayMidText("Player's turn", 0.5f));
+        StartCoroutine(PlayMidText("Player's turn", 0.1f));
+        yield return new WaitForSeconds(2.0f);
         isPlayerTurn = true;
         timer = playerTimer;
         
-        while(isPlayerTurn && skips == 0)
+        while(isPlayerTurn)
         {
             if(doDebat)
             {

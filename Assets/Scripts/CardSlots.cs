@@ -25,12 +25,6 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private bool isHover = false;
     private GameObject buttonHovered;
 
-    static Dictionary<string, string> cards = new Dictionary<string, string>()
-    {
-        {"CardSlot1", "A1"},
-        {"CardSlot2", "D2"},
-        {"CardSlot3", "S3"}
-    };
     static Dictionary<string, Sprite> cardsSprite = new Dictionary<string, Sprite>()
     {
         {"A1", null},
@@ -70,9 +64,10 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     void Awake()
     {
-        PlayerPrefs.SetString("CardSlot1", "A1");
-        PlayerPrefs.SetString("CardSlot2", "D2");
-        PlayerPrefs.SetString("CardSlot3", "S3");
+        //PlayerPrefs.SetString("CardSlot1", "A2"); buat nyoba
+        //PlayerPrefs.SetString("CardSlot2", "D2");
+        //PlayerPrefs.SetString("CardSlot3", "S3");
+        
         cardsSprite["A1"] = A1;
         cardsSprite["A2"] = A2;
         cardsSprite["A3"] = A3;
@@ -90,9 +85,9 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         cardSlot2 = this.gameObject.transform.GetChild(1).gameObject;
         cardSlot3 = this.gameObject.transform.GetChild(2).gameObject;
 
-        cardSlot1.GetComponent<Image>().sprite = cardsSprite["A1"];
-        cardSlot2.GetComponent<Image>().sprite = cardsSprite["D2"];
-        cardSlot3.GetComponent<Image>().sprite = cardsSprite["S3"];
+        cardSlot1.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot1")];
+        cardSlot2.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot2")];
+        cardSlot3.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot3")];
     }
     void Update()
     {
@@ -109,7 +104,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
 
         GameLogic.isUsingCard = true;
-        GameLogic.cardUsed = card.name;
+        GameLogic.cardUsed = PlayerPrefs.GetString(card.name);
         card.transform.SetParent(card.transform.parent.transform.parent.transform.parent);//LMAO
 
         Vector2 oPos = card.transform.position;
@@ -173,6 +168,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             card.transform.position = new Vector2(Mathf.SmoothStep(oPos.x, cardDestination2.transform.position.x, t),Mathf.SmoothStep(oPos.y, cardDestination2.transform.position.y, t));
             yield return null;
         }
+        card.SetActive(false);
  
     }
 

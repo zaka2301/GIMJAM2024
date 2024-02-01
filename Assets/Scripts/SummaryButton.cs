@@ -7,11 +7,6 @@ using UnityEngine.UI;
 public class SummaryButton : MonoBehaviour
 {
     [SerializeField] Image blackScreen;
-    [SerializeField] GameObject cutscene;
-    [SerializeField] Sprite win;
-    [SerializeField] Sprite lose;
-    [SerializeField] AudioClip winSFX;
-    [SerializeField] AudioClip loseSFX;
 
     [SerializeField] AudioSource musicPlayer;
 
@@ -23,6 +18,7 @@ public class SummaryButton : MonoBehaviour
 
     public void Continue()
     {
+        PlayerPrefs.SetInt("Stage", PlayerPrefs.GetInt("Stage") + 1);
         StartCoroutine(Cutscene());
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }
@@ -37,37 +33,7 @@ public class SummaryButton : MonoBehaviour
             a += Time.deltaTime;
             yield return null;
         }
-        //load cutscne
-        if(GameLogic.playerHealth >= GameLogic.enemyHealth){
-            cutscene.GetComponent<Image>().sprite = win;
-            cutscene.GetComponent<AudioSource>().clip = winSFX;
-        }
-        else
-        {
-            cutscene.GetComponent<Image>().sprite = lose;
-            cutscene.GetComponent<AudioSource>().clip = loseSFX;
-        }
-        cutscene.SetActive(true);
-
-
-        while(a >= 0.0f)
-        {
-            blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
-            a -= Time.deltaTime;
-            yield return null;
-        }
-        while(!Input.anyKey)
-        {
-            yield return null;
-        }
-
-        while(a <= 1.0f)
-        {
-            blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
-            a += Time.deltaTime;
-            yield return null;
-        }
-
+        
         //loadscene
 
     }
