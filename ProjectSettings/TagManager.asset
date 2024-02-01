@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Black Screen
   - Timer
+  - Cards
   layers:
   - Default
   - TransparentFX
