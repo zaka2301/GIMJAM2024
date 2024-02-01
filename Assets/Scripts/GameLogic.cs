@@ -101,7 +101,7 @@ public class GameLogic : MonoBehaviour
                 break;
         }
         
-        maxTurn = 1;
+
         playerHealth = PlayerPrefs.GetInt("Followers", 100);
         enemyHealth = 100;
 

@@ -15,8 +15,6 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     AudioSource audioSource;
     [SerializeField] AudioClip koranSFX;
-    [SerializeField] float ftf;
-        [SerializeField] float pic;
 
     [SerializeField] GameObject A1;
     [SerializeField] GameObject A2;
@@ -39,6 +37,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     void Start()
     {
+        PlayerPrefs.SetInt("Stage", 1);
         audioSource.PlayOneShot(koranSFX, 1.0f);
         A1.SetActive(PlayerPrefs.GetInt("A1", 1) == 0 ? false : true);
         A2.SetActive(PlayerPrefs.GetInt("A2", 1) == 0 ? false : true);
@@ -101,8 +100,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             if(selection.Contains(buttonHovered.name))
             {
-                audioSource.time = 0.2f;
-                audioSource.pitch = -3.0f;
+                audioSource.time = 0.25f;
+                audioSource.pitch = 3.0f;
                 audioSource.Play();
                 selection.Remove(buttonHovered.name);
                 buttonHovered.transform.GetChild(0).gameObject.SetActive(false);
@@ -115,8 +114,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 }
                 else
                 {
-                    audioSource.pitch = 3.0f;
-                    audioSource.time = 0.25f;
+                    audioSource.pitch = -3.0f;
+                    audioSource.time = 0.2f;
                     audioSource.Play();
                     selection.Add(buttonHovered.name);
                     buttonHovered.transform.GetChild(0).gameObject.SetActive(true);
