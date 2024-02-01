@@ -67,7 +67,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         //PlayerPrefs.SetString("CardSlot1", "A2"); buat nyoba
         //PlayerPrefs.SetString("CardSlot2", "D2");
         //PlayerPrefs.SetString("CardSlot3", "S3");
-        
+
         cardsSprite["A1"] = A1;
         cardsSprite["A2"] = A2;
         cardsSprite["A3"] = A3;
@@ -103,6 +103,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     IEnumerator UseCard(GameObject card)
     {
 
+        isHover = false;
         GameLogic.isUsingCard = true;
         GameLogic.cardUsed = PlayerPrefs.GetString(card.name);
         card.transform.SetParent(card.transform.parent.transform.parent.transform.parent);//LMAO
