@@ -8,7 +8,8 @@ public class DebatBottomText : MonoBehaviour
     TextMeshProUGUI bottomText;
 
 
-    private static string displayText = "Use a card or press any arrow to start debate.";
+    private static string displayText = "";
+    /*
     static Dictionary<string, string> cardDescription = new Dictionary<string, string>()
     {
      {"A1", "Sembako Throw : Send a groceries attack bought by emak-emak, deals damage to opponent"},
@@ -21,6 +22,19 @@ public class DebatBottomText : MonoBehaviour
      {"S2", "Summon Ketua Partai : Deals great damage to opponent"},
      {"S3", "Buzzer Service : Increases followers greatly"}
     };
+    */
+    static Dictionary<string, string> cardDescription = new Dictionary<string, string>()
+    {
+     {"A1", "Sembako Attack"},
+     {"A2", "Santet Dukun"},
+     {"A3", "Toggle Mute"},
+     {"D1", "Rugi dong? Yang bener aja?"},
+     {"D2", "Followers Roar"},
+     {"D3", "Kita Rehat Sejenak"},
+     {"S1", "Ghibah Technique"},
+     {"S2", "Bajer Service"},
+     {"S3", "Ordal no Jutsu"}
+    };
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +45,17 @@ public class DebatBottomText : MonoBehaviour
 
     public static void OnHoverCard(string card)
     {
+
         if(card == " ")
         {
-            displayText = "Use a card or press any arrow to start debate.";
+            displayText = "";
         }
         else
         {
+
+
+            displayText = "Use card : " + cardDescription[PlayerPrefs.GetString(card)];
+            /*
             switch (card)
             {
                 case "CardSlot1":
@@ -51,21 +70,22 @@ public class DebatBottomText : MonoBehaviour
                 default:
                     break;
             }
+            */
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameLogic.isPlayerTurn && !GameLogic.doDebat && !GameLogic.isUsingCard)
+        if(GameLogic.isPlayerTurn && !GameLogic.doDebat)
         {
 
-            bottomText.text = displayText;
+            bottomText.text = "Press any arrow to start the debate.";
 
         }
         else
         {
-            bottomText.text = " ";
+            bottomText.text = displayText;
         }
         
     }
