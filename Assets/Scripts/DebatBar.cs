@@ -36,13 +36,13 @@ public class DebatBar : MonoBehaviour
 
     }
 
-    public IEnumerator UpdateBar()
+    public IEnumerator UpdateBar(float m = 2.0f)
     {
 
         float ipv = playerBar.value;
         float epv = enemyBar.value;
         float time = 0.0f;
-        float m = 2.0f;
+  
         while(time < m)
         {
             time += Time.deltaTime;

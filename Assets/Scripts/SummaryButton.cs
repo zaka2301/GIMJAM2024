@@ -10,20 +10,25 @@ public class SummaryButton : MonoBehaviour
 
     [SerializeField] AudioSource musicPlayer;
 
+
+    void Start()
+    {
+        StartCoroutine(UnBlackScreen());
+    }
     
     public void Retry()
     {
-        SceneManager.LoadScene("DebatPhase", LoadSceneMode.Single);
+        StartCoroutine(LoadScene("PreDebat"));
     }
 
     public void Continue()
     {
         PlayerPrefs.SetInt("Stage", PlayerPrefs.GetInt("Stage") + 1);
-        StartCoroutine(Cutscene());
+        StartCoroutine(LoadScene("PreDebat"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }
 
-    private IEnumerator Cutscene()
+    private IEnumerator LoadScene(string scene)
     {
         float a = 0.0f;
         while(a <= 1.0f)
@@ -35,6 +40,18 @@ public class SummaryButton : MonoBehaviour
         }
         
         //loadscene
+        SceneManager.LoadScene(scene);
+    }
 
+    private IEnumerator UnBlackScreen()
+    {
+        float a = 1.0f;
+        while(a > 0.0f)
+        {
+
+            blackScreen.color = new Color(0.0f,0.0f,0.0f, a);
+            a -= Time.deltaTime;
+            yield return null;
+        }
     }
 }
