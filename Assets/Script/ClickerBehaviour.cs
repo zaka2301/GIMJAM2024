@@ -24,7 +24,7 @@ public class ClickerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) & PreGame.gameStarted)
         {
             float RNG = Random.Range(0f, 1f);
             followers += followerGain;

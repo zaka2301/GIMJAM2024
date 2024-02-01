@@ -11,7 +11,7 @@ public class CountdownTimer : MonoBehaviour
     private int cardTime1;
     private int cardTime2;
 
-    void Start()
+    public void StartClock()
     {
         time = startingTime;
 
@@ -21,13 +21,20 @@ public class CountdownTimer : MonoBehaviour
     }
 
     void TimerDecrease()
-    {
-        time--;
+    {   
+        if (time > 0)
+        {
+            time--;
+        }
         if (time == cardTime1 | time == cardTime2)
         {
             GetComponent<CardEvent>().TriggerCardEvent();
         }
         UpdateUI();
+        if (time == 0)
+        {
+            GetComponent<PreGame>().EndGame();
+        }
     }
 
     void UpdateUI()
