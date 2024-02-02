@@ -38,6 +38,16 @@ public class GameLogic : MonoBehaviour
 
     [SerializeField] float lifeStealMultiplier;
 
+    [SerializeField] GameObject playerBubble;
+    [SerializeField] GameObject enemyBubble;
+
+    Sprite chatp1;
+    Sprite chatp2;
+    Sprite chatp3;
+    Sprite chate1;
+    Sprite chate2;
+    Sprite chate3;
+
     Transform cardDestination;
     Transform cardDestination2;
     static AudioSource audioSource;
@@ -80,6 +90,13 @@ public class GameLogic : MonoBehaviour
     void Start()
     {
 
+
+        chatp1 = Resources.Load<Sprite>("chat debat");
+        chatp2 = Resources.Load<Sprite>("chat debat2");
+        chatp3 = Resources.Load<Sprite>("chat debat attack");
+        chate1 = Resources.Load<Sprite>("chat debat enemy");
+        chate2 = Resources.Load<Sprite>("chat debat2 enemy");
+        chate3 = Resources.Load<Sprite>("chat debat attack enemy");
 
         playerDamageMultiplier = 1.0f;
         enemyDamageMultiplier = 1.0f;
@@ -155,6 +172,16 @@ public class GameLogic : MonoBehaviour
 
     }
 
+
+    IEnumerator StartBubble()
+    {
+        while(true)
+        {
+            float chance = Random.Range(0.0f, 1.0f);
+            yield return new WaitForSeconds(2.0f);
+        }
+        yield return new WaitForSeconds(2.0f);sad
+    }
 
 
     IEnumerator PlayMidText(string type, float sec = 2.0f)
