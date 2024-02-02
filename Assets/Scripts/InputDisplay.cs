@@ -1,25 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputDisplay : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer A;
-    [SerializeField] SpriteRenderer B;
-    [SerializeField] SpriteRenderer C;
-    [SerializeField] SpriteRenderer D;
+    Image A;
+    Image B;
+    Image C;
+    Image D;
     [SerializeField] Sprite Up;
     [SerializeField] Sprite Down;
     [SerializeField] Sprite Left;
     [SerializeField] Sprite Right;
     // Start is called before the first frame update
-    private static float[] rot = new float[4]{0.0f, 90.0f, 180.0f, 270.0f};
 
     private static Sprite[] sprites = new Sprite[4];
-    private SpriteRenderer[] display = new SpriteRenderer[4];
+    private Image[] display = new Image[4];
 
     void Awake()
     {
+        A = this.gameObject.transform.GetChild(3).gameObject.GetComponent<Image>();
+        B = this.gameObject.transform.GetChild(2).gameObject.GetComponent<Image>();
+        C = this.gameObject.transform.GetChild(1).gameObject.GetComponent<Image>();
+        D = this.gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
+
         display[0] = A;
         display[1] = B;
         display[2] = C;

@@ -35,7 +35,8 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {"D3", null},
         {"S1", null},
         {"S2", null},
-        {"S3", null}
+        {"S3", null},
+        {""  , null}
     };
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -56,7 +57,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         isHover = false;
         buttonHovered = null;
         cardPreview.SetActive(false);
-        DebatBottomText.OnHoverCard(" ");
+        DebatBottomText.OnHoverCard("");
     }
 
 
@@ -85,6 +86,10 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         cardSlot2 = this.gameObject.transform.GetChild(1).gameObject;
         cardSlot3 = this.gameObject.transform.GetChild(2).gameObject;
 
+        cardSlot1.SetActive(!(PlayerPrefs.GetString("CardSlot1") == ""));
+        cardSlot2.SetActive(!(PlayerPrefs.GetString("CardSlot2") == ""));
+        cardSlot3.SetActive(!(PlayerPrefs.GetString("CardSlot3") == ""));
+
         cardSlot1.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot1")];
         cardSlot2.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot2")];
         cardSlot3.GetComponent<Image>().sprite = cardsSprite[PlayerPrefs.GetString("CardSlot3")];
@@ -104,8 +109,11 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
 
         isHover = false;
+        buttonHovered = null;
+        cardPreview.SetActive(false);
+        DebatBottomText.OnHoverCard("");
         GameLogic.isUsingCard = true;
-        GameLogic.cardUsed = PlayerPrefs.GetString(card.name);
+        GameLogic.cardUsed = "";
         card.transform.SetParent(card.transform.parent.transform.parent.transform.parent);//LMAO
 
         Vector2 oPos = card.transform.position;
@@ -169,6 +177,7 @@ public class CardSlots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             card.transform.position = new Vector2(Mathf.SmoothStep(oPos.x, cardDestination2.transform.position.x, t),Mathf.SmoothStep(oPos.y, cardDestination2.transform.position.y, t));
             yield return null;
         }
+        GameLogic.cardUsed = PlayerPrefs.GetString(card.name);
         card.SetActive(false);
  
     }
