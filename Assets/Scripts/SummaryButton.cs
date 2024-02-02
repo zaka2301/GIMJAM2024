@@ -23,7 +23,10 @@ public class SummaryButton : MonoBehaviour
 
     public void Continue()
     {
-        PlayerPrefs.SetInt("Stage", PlayerPrefs.GetInt("Stage") + 1);
+        int s = PlayerPrefs.GetInt("Stage");
+        PlayerPrefs.SetInt("Stage", s + 1);
+
+        PlayerPrefs.Save();
         StartCoroutine(LoadScene("PreDebat"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }

@@ -7,6 +7,8 @@ using TMPro;
 public class GameLogic : MonoBehaviour
 {
 
+    [SerializeField] Animator enemyAnimator;
+
     [SerializeField] InputDisplay inputDisplay;
     [SerializeField] Animator summaryScreen;
 
@@ -64,7 +66,7 @@ public class GameLogic : MonoBehaviour
     public static int turn;
 
     int maxTurn;
-    int stage;
+    static int stage;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +84,10 @@ public class GameLogic : MonoBehaviour
         mistakeCount = 0;
         turn = 0;
 
-        stage = PlayerPrefs.GetInt("Stage", 1);
+
+        stage = PlayerPrefs.GetInt("Stage");
+
+        enemyAnimator.SetInteger("Alien", stage);
         switch(stage)
         {
             case 1:
@@ -100,7 +105,7 @@ public class GameLogic : MonoBehaviour
                 Debug.Log("No Stage");
                 break;
         }
-        
+        maxTurn = 1;
 
         playerHealth = PlayerPrefs.GetInt("Followers", 100);
         enemyHealth = 100;
@@ -212,7 +217,6 @@ public class GameLogic : MonoBehaviour
         //skips = skips == 0 ? skips : skips - 1;
         isUsingCard = false;
 
-        Debug.Log(turn);
 
         yield return new WaitForSeconds(2.0f);
 
