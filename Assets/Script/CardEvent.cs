@@ -10,13 +10,32 @@ public class CardEvent : MonoBehaviour
     [SerializeField] Image cardImage;
     [SerializeField] GameObject cardUI;
     [SerializeField] GameObject stopwatchObject;
+    [SerializeField] TextMeshProUGUI cardCountDownText;
+
     [SerializeField] string[] cardNames;
     [SerializeField] Sprite[] cardSprites;
     [SerializeField] float[] cardWeights;
-    [SerializeField] TextMeshProUGUI cardCountDownText;
-    [SerializeField] float followersNeeded;
-    public bool IsCardEvent;
+
+    public static bool IsCardEvent {get; private set;}
+    [SerializeField] float[] followersNeeded;
+    private int currentCardEvent = 0;
     private int followerStart;
+
+    void Start()
+    {
+        if (PlayerPrefs.GetInt("Stage", 1) != 1)
+        {
+            int i = 0;
+            foreach (string cardName in cardNames)
+            {
+                if (PlayerPrefs.GetInt(cardName, 0) == 1)
+                {
+                    cardWeights[i] = 0;
+                }
+                i++;
+            }
+        }
+    }
 
     public void TriggerCardEvent()
     {
@@ -29,24 +48,13 @@ public class CardEvent : MonoBehaviour
     public void StartCardEvent()
     {
         StartCoroutine(stopwatchObject.GetComponent<Stopwatch>().StartStopwatch());
-        StartCoroutine(CardEventCountDown(10));
-    }
-
-    IEnumerator CardEventCountDown(int time)
-    {
-        yield return new WaitForSeconds(time);
-        EndCardEvent();
-    }
-
-    public void UpdateCardEventUI()
-    {
-        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/100 Followers" ;
+        StartCoroutine(CardEventCountDown());
     }
 
     public void EndCardEvent()
     {
         IsCardEvent = false;
-        if (ClickerBehaviour.followers - followerStart >= followersNeeded)
+        if (ClickerBehaviour.followers - followerStart >= followersNeeded[currentCardEvent])
         {
             int cardIndex = CardRandomizerIndex();
             PlayerPrefs.SetInt(cardNames[cardIndex], 1);
@@ -54,8 +62,15 @@ public class CardEvent : MonoBehaviour
             cardObject.SetActive(true);
             cardObject.GetComponent<Animator>().SetTrigger("GotCard");
         }
-        cardUI.GetComponent<Animator>().SetTrigger("EndEvent");
         cardCountDownText.text = "";
+        cardUI.GetComponent<Animator>().SetTrigger("EndEvent");
+        currentCardEvent++;
+    }
+
+    IEnumerator CardEventCountDown()
+    {
+        yield return new WaitForSeconds(10);
+        EndCardEvent();
     }
 
     int CardRandomizerIndex()
@@ -76,5 +91,10 @@ public class CardEvent : MonoBehaviour
         }
         cardWeights[selectedIndex] = 0;
         return selectedIndex;
+    }
+
+    public void UpdateCardEventUI()
+    {
+        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/" + followersNeeded[currentCardEvent] + "Followers" ;
     }
 }
