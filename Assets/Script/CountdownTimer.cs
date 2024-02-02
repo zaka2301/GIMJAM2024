@@ -34,7 +34,7 @@ public class CountdownTimer : MonoBehaviour
         UpdateUI();
         if (time == 0)
         {
-            GetComponent<PreGame>().EndGame();
+            StartCoroutine(GetComponent<PreGame>().EndGame());
         }
     }
 

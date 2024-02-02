@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PreGame : MonoBehaviour
 {
@@ -27,11 +28,13 @@ public class PreGame : MonoBehaviour
         gameStarted = true;
     }
 
-    public void EndGame()
+    public IEnumerator EndGame()
     {
         gameStarted = false;
         titleObject.SetActive(true);
         titleObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Time's up!";
         PlayerPrefs.SetInt("Followers", ClickerBehaviour.followers);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("PreDebat");
     }
 }
