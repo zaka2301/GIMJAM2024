@@ -234,15 +234,15 @@ MonoBehaviour:
   followerText: {fileID: 1003788910}
   followerSlider: {fileID: 1477242841}
   popupPrefab: {fileID: 8455838106824641224, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}
+  maxFollowers: 1500
   followerGain: 1
-  maxFollowers: 500
   bonusChance: 0.1
   bonusGain: 2
-  popupBloomRecovery: 1
-  popupBloomGain: 0.2
   maxPopupBloom: 1.5
-  nextUpgrade: 50
-  popupBloom: 0.1
+  popupBloomGain: 0.2
+  popupBloomRecovery: 1
+  maxUpgrade: 4
+  upgradeMilestone: 640000002c01000058020000e8030000
 --- !u!4 &186407453
 Transform:
   m_ObjectHideFlags: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
   cardImage: {fileID: 1138894637}
   cardUI: {fileID: 701355336}
   stopwatchObject: {fileID: 685735462}
+  cardCountDownText: {fileID: 914566470}
   cardNames:
   - A1
   - D1
@@ -318,9 +319,9 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  cardCountDownText: {fileID: 914566470}
-  followersNeeded: 100
-  IsCardEvent: 0
+  followersNeeded:
+  - 150
+  - 300
 --- !u!114 &186407456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2789,6 +2790,10 @@ PrefabInstance:
     - target: {fileID: 8455838106824641236, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455838108598851657, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}

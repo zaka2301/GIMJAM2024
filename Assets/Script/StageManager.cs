@@ -12,7 +12,7 @@ public class StageManager : MonoBehaviour
     {
 
 
-        stage = PlayerPrefs.GetInt("Stage", 3);
+        stage = PlayerPrefs.GetInt("Stage", 1);
 
         switch (stage)
         {
@@ -31,6 +31,8 @@ public class StageManager : MonoBehaviour
             case(5):
                 backroundRenderer.sprite = stageBackgrounds[0];
                 break;
+
+            
         }
 
     }
