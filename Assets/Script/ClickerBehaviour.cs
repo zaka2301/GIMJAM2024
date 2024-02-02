@@ -46,6 +46,10 @@ public class ClickerBehaviour : MonoBehaviour
             {
                 Upgrade();
             }
+            if (GetComponent<CardEvent>().IsCardEvent)
+            {
+                GetComponent<CardEvent>().UpdateCardEventUI();
+            }
         }
         if (popupBloom > 0.2f)
         {

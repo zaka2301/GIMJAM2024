@@ -8,45 +8,53 @@ public class CardEvent : MonoBehaviour
 {
     [SerializeField] GameObject cardObject;
     [SerializeField] Image cardImage;
+    [SerializeField] GameObject cardUI;
+    [SerializeField] GameObject stopwatchObject;
     [SerializeField] string[] cardNames;
     [SerializeField] Sprite[] cardSprites;
     [SerializeField] float[] cardWeights;
     [SerializeField] TextMeshProUGUI cardCountDownText;
-    private bool IsCardEvent;
+    [SerializeField] float followersNeeded;
+    public bool IsCardEvent;
     private int followerStart;
 
     public void TriggerCardEvent()
     {
         IsCardEvent = true;
         followerStart = ClickerBehaviour.followers;
+        cardCountDownText.text = "Card Event!!";
+        cardUI.GetComponent<Animator>().SetTrigger("StartEvent");
+    }
+
+    public void StartCardEvent()
+    {
+        StartCoroutine(stopwatchObject.GetComponent<Stopwatch>().StartStopwatch());
         StartCoroutine(CardEventCountDown(10));
     }
 
     IEnumerator CardEventCountDown(int time)
     {
-        UpdateCardEventUI(time);
-        while (time > 0)
-        {
-            yield return new WaitForSeconds(1);
-            time--;
-            UpdateCardEventUI(time);
-        }
+        yield return new WaitForSeconds(time);
         EndCardEvent();
     }
 
-    void UpdateCardEventUI(int time)
+    public void UpdateCardEventUI()
     {
-        cardCountDownText.text = "Card Event: " + time;
+        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/100 Followers" ;
     }
 
     public void EndCardEvent()
     {
         IsCardEvent = false;
-        int cardIndex = CardRandomizerIndex();
-        PlayerPrefs.SetInt(cardNames[cardIndex], 1);
-        cardImage.sprite = cardSprites[cardIndex];
-        cardObject.SetActive(true);
-        cardObject.GetComponent<Animator>().SetTrigger("GotCard");
+        if (ClickerBehaviour.followers - followerStart >= followersNeeded)
+        {
+            int cardIndex = CardRandomizerIndex();
+            PlayerPrefs.SetInt(cardNames[cardIndex], 1);
+            cardImage.sprite = cardSprites[cardIndex];
+            cardObject.SetActive(true);
+            cardObject.GetComponent<Animator>().SetTrigger("GotCard");
+        }
+        cardUI.GetComponent<Animator>().SetTrigger("EndEvent");
         cardCountDownText.text = "";
     }
 
