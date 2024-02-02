@@ -14,6 +14,7 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] float scaler;
 
     AudioSource audioSource;
+    AudioSource musicSource;
     [SerializeField] AudioClip koranSFX;
 
     [SerializeField] GameObject A1;
@@ -34,6 +35,10 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Awake()
     {
         audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+        musicSource = GameObject.Find("Music Player").GetComponent<AudioSource>();
+
+        audioSource.volume *= PlayerPrefs.GetFloat("MasterVolume", 1.0f) *  PlayerPrefs.GetFloat("SFXVolume", 1.0f);
+        musicSource.volume *= PlayerPrefs.GetFloat("MasterVolume", 1.0f) *  PlayerPrefs.GetFloat("MusicVolume", 1.0f);
     }
     void Start()
     {
