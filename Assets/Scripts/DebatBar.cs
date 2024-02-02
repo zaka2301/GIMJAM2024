@@ -16,8 +16,8 @@ public class DebatBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxPlayerFollowers = 0;
-        maxEnemyFollowers = 0;
+        maxPlayerFollowers = 1;
+        maxEnemyFollowers = 1;
  
     }
 

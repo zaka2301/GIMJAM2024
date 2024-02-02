@@ -18,16 +18,17 @@ public class SummaryButton : MonoBehaviour
     
     public void Retry()
     {
-        StartCoroutine(LoadScene("PreDebat"));
+        StartCoroutine(LoadScene("ClickerPhase"));
     }
 
     public void Continue()
     {
         int s = PlayerPrefs.GetInt("Stage");
         PlayerPrefs.SetInt("Stage", s + 1);
+        PlayerPrefs.SetInt("Followers", GameLogic.playerHealth);
 
         PlayerPrefs.Save();
-        StartCoroutine(LoadScene("PreDebat"));
+        StartCoroutine(LoadScene("ClickerPhase"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }
 

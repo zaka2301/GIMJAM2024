@@ -14,6 +14,8 @@ public class GameLogic : MonoBehaviour
 
     public static float playerTimer;
     public static float enemyTimer;
+
+    public static bool showTips;
     [SerializeField] Image blackScreen;
     [SerializeField] GameObject timerBar;
     [SerializeField] DebatBar debatBar;
@@ -30,6 +32,14 @@ public class GameLogic : MonoBehaviour
 
     [SerializeField] AudioClip koran;
 
+    [SerializeField] AudioSource musicSource;
+
+    [SerializeField] Stopwatch stopwatch;
+
+    [SerializeField] float lifeStealMultiplier;
+
+    Transform cardDestination;
+    Transform cardDestination2;
     static AudioSource audioSource;
     public static float timer;
     public static bool isPlayerTurn = false;
@@ -69,6 +79,8 @@ public class GameLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         playerDamageMultiplier = 1.0f;
         enemyDamageMultiplier = 1.0f;
         timerMultiplier = 1.0f;
@@ -76,6 +88,7 @@ public class GameLogic : MonoBehaviour
         roundSkip = false;
         enemySkip = false;
         dukunTurn = false;
+        showTips = false;
 
         playerHealthBajer = 0;
         playerHealthBonus = 0;
@@ -83,31 +96,42 @@ public class GameLogic : MonoBehaviour
         mistakeCount = 0;
         turn = 0;
 
+        
 
-        stage = PlayerPrefs.GetInt("Stage");
+
+        stage = PlayerPrefs.GetInt("Stage", 1);
 
         enemyAnimator.SetInteger("Alien", stage);
         switch(stage)
         {
             case 1:
+                enemyHealth = 500;
+                maxTurn = 3;
+                break;
             case 2:
+                enemyHealth = 1000;
                 maxTurn = 3;
                 break;
             case 3:
+                enemyHealth = 1500;
+                maxTurn = 3;
+                break;
             case 4:
+                enemyHealth = 2000;
                 maxTurn = 4;
                 break;
             case 5:
+                enemyHealth = 3000;
                 maxTurn = 5;
                 break;
             default:
                 Debug.Log("No Stage");
                 break;
         }
-        maxTurn = 1;
 
-        playerHealth = PlayerPrefs.GetInt("Followers", 100);
-        enemyHealth = 100;
+
+        playerHealth = PlayerPrefs.GetInt("Followers", 0);
+        
 
         playerTimer = 2.0f;
         enemyTimer = 2.0f;
@@ -115,6 +139,13 @@ public class GameLogic : MonoBehaviour
         playerBaseHealth = playerHealth;
 
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume *= PlayerPrefs.GetFloat("MasterVolume", 1.0f) * PlayerPrefs.GetFloat("SFXVolume", 1.0f);
+        musicSource.volume *= PlayerPrefs.GetFloat("MasterVolume", 1.0f) * PlayerPrefs.GetFloat("MusicVolume", 1.0f);
+
+
+        cardDestination = GameObject.Find("Card Destination").transform;
+        cardDestination2 = GameObject.Find("Card Destination 2").transform;
+
         StartCoroutine(debatBar.UpdateBar());
 
         
@@ -153,7 +184,7 @@ public class GameLogic : MonoBehaviour
 
                 a = 0.0f;
 
-                float rand = Random.Range(0.0f, 0.5f);
+                float rand = Random.Range(0.0f, 1.0f);
 
                 midText.text = rand < 0.5f ? "Player goes first" : "Opponent goes first";
                 while(a < 1.0f)
@@ -211,18 +242,27 @@ public class GameLogic : MonoBehaviour
         playerHealth -= playerHealthBonus;
         playerHealthBonus = 0;
 
+        playerHealth = Mathf.Max(playerHealth, 0);
+        enemyHealth = Mathf.Max(enemyHealth, 0);
+
         StartCoroutine(debatBar.UpdateBar());
         turn += 1;
         //skips = skips == 0 ? skips : skips - 1;
         isUsingCard = false;
-        isPlayerTurn = !isPlayerTurn;
-        //yield return new WaitForSeconds(2.0f);
+        
+        
 
+        
+        yield return new WaitForSeconds(2.0f);
+        isPlayerTurn = !isPlayerTurn;
         if(turn > maxTurn * 2) //debat selesai
         {
-            yield return new WaitForSeconds(2.0f);
+            
             audioSource.PlayOneShot(koran, 1.0f);
             summaryScreen.enabled = true;
+
+            playerHealth -= playerHealthBajer;
+
             StartCoroutine(BlackScreen());
 
             yield break; //selesai, gausah setup
@@ -231,12 +271,13 @@ public class GameLogic : MonoBehaviour
         {
             StartCoroutine(PlayMidText("Round Skipped", 1.0f));
             roundSkip = false;
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(2.0f);
             StartCoroutine(SetUpTurn());
             yield break;
         }
         else if(turn % 2 != 0) // round change
         {
+            
             //reset multiplier
             if(!dukunTurn)
             {
@@ -250,11 +291,22 @@ public class GameLogic : MonoBehaviour
             playerDamageMultiplier = 1.0f;
             timerMultiplier = 1.0f;
 
+            StartCoroutine(PlayMidText("Ready", 0.5f));
+            yield return new WaitForSeconds(2.0f);
 
-            StartCoroutine(PlayMidText("Preparation", 0.5f));
+            stopwatch.gameObject.SetActive(true);
+            StartCoroutine(StartStopwatch());
+            
             canUseCard = true;
             audioSource.Play();
-            yield return new WaitForSeconds(10.0f);
+            float t = 0.0f;
+            while(t < 10.0f &&!isUsingCard && !(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow)))
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+            audioSource.Stop();
+            stopwatch.gameObject.SetActive(false);
     
             canUseCard = false;
 
@@ -363,6 +415,33 @@ public class GameLogic : MonoBehaviour
         yield break;
     }
 
+    IEnumerator StartStopwatch()
+    {
+        StartCoroutine(stopwatch.StartStopwatch());
+
+        float t = 0.0f;
+        Vector2 oPos = stopwatch.gameObject.transform.position;
+        while(t < 1.0f)
+        {
+            t += Time.deltaTime * 2.0f;
+            stopwatch.gameObject.transform.position = new Vector2(Mathf.SmoothStep(oPos.x, cardDestination.position.x, t),Mathf.SmoothStep(oPos.y, cardDestination.position.y + 200.0f, t));
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(9.5f);
+
+        t = 0.0f;
+
+        oPos = stopwatch.gameObject.transform.position;
+        while(t < 1.0f)
+        {
+            t += Time.deltaTime * 2.0f;
+            stopwatch.gameObject.transform.position = new Vector2(Mathf.SmoothStep(oPos.x, cardDestination2.position.x, t),Mathf.SmoothStep(oPos.y, cardDestination2.position.y, t));
+            yield return null;
+        }
+
+    }
+
 
     void PlayHitSound()
     {
@@ -389,7 +468,7 @@ public class GameLogic : MonoBehaviour
         }
         else if(p < 0.5)
         {
-            audioSource.PlayOneShot(gibberish2, 1.0f);
+            audioSource.PlayOneShot(gibberish2, 0.7f);
         }
         else if(p < 0.75f)
         {
@@ -397,7 +476,7 @@ public class GameLogic : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(gibberish4, 1.0f);
+            audioSource.PlayOneShot(gibberish4, 0.7f);
         }
     }
 
@@ -448,7 +527,7 @@ public class GameLogic : MonoBehaviour
             }
             else
             {
-                if(timer % 0.5f < 0.05f) PlayGibberishSound();
+                if(timer % 0.5f < 0.02f) PlayGibberishSound();
                 timer -= Time.deltaTime;
                 
             }
@@ -459,9 +538,9 @@ public class GameLogic : MonoBehaviour
         
 
         PlayHitSound();
-        int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
-        playerHealth -= damage;
-        enemyHealth += damage;
+        float damage =  ( (float) playerHealth * 0.33f * enemyDamageMultiplier); // -1/5
+        playerHealth -= (int) damage;
+        enemyHealth += (int)(damage * lifeStealMultiplier);
 
 
         StartCoroutine(SetUpTurn());
@@ -471,8 +550,12 @@ public class GameLogic : MonoBehaviour
 
     private IEnumerator SetUpPlayerTurn()
     {
+
+        
+
         StartCoroutine(PlayMidText("Player's turn", 0.1f));
         yield return new WaitForSeconds(2.0f);
+        showTips = true;
 
         timer = playerTimer;
         
@@ -531,15 +614,15 @@ public class GameLogic : MonoBehaviour
             PlayHitSound();
             if(currentInput < 0) //berhasil hit semua
             {
-                int damage = (int) ( (float) enemyHealth * 0.33f * playerDamageMultiplier); // -1/3
-                playerHealth += damage; // * x%
-                enemyHealth -= damage;
+                float damage =  ( (float) enemyHealth * 0.33f * playerDamageMultiplier); // -1/3
+                playerHealth += (int) (damage * lifeStealMultiplier); // * x%
+                enemyHealth -= (int) damage;
             }
             else
             {
-                int damage = (int) ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
-                playerHealth -= damage;
-                enemyHealth += damage;
+                float damage = ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+                playerHealth -= (int) damage;
+                enemyHealth += (int) (damage * lifeStealMultiplier);
             }
         }
         timerBar.SetActive(false);
@@ -551,6 +634,7 @@ public class GameLogic : MonoBehaviour
 
 
         doDebat = false;
+        showTips = false;
 
 
 

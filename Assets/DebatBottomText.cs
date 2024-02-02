@@ -33,7 +33,8 @@ public class DebatBottomText : MonoBehaviour
      {"D3", "Kita Rehat Sejenak"},
      {"S1", "Ghibah Technique"},
      {"S2", "Bajer Service"},
-     {"S3", "Ordal no Jutsu"}
+     {"S3", "Ordal no Jutsu"},
+     {"", "ERROR"}
     };
     // Start is called before the first frame update
     void Start()
@@ -46,46 +47,37 @@ public class DebatBottomText : MonoBehaviour
     public static void OnHoverCard(string card)
     {
 
-        if(card == "")
-        {
-            displayText = "";
-        }
-        else
-        {
-
-
-            displayText = "Use card : " + cardDescription[PlayerPrefs.GetString(card)];
-            /*
-            switch (card)
+            if(card != "")
             {
-                case "CardSlot1":
-                    displayText = cardDescription["A1"];
-                    break;
-                case "CardSlot2":
-                    displayText = cardDescription["D2"];
-                    break;
-                case "CardSlot3":
-                    displayText = cardDescription["S3"];
-                    break;
-                default:
-                    break;
+                displayText = "Use card : " + cardDescription[PlayerPrefs.GetString(card)];
+                return;
             }
-            */
-        }
+
+
+        displayText = "";
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameLogic.isPlayerTurn && !GameLogic.canUseCard && !GameLogic.doDebat)
+        if(GameLogic.showTips && !GameLogic.doDebat)
         {
 
             bottomText.text = "Press any arrow to start the debate.";
+            return;
 
+        }
+        
+        if (GameLogic.canUseCard)
+        {
+
+
+            bottomText.text = displayText == "" ?  "Prepare for the round." : displayText;
         }
         else
         {
-            bottomText.text = displayText;
+            bottomText.text = "";
         }
         
     }
