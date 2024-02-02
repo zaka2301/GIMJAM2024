@@ -6,7 +6,6 @@ using TMPro;
 
 public class DebatBar : MonoBehaviour
 {
-    [SerializeField] GameLogic gameLogic;
     [SerializeField] Slider playerBar;
     [SerializeField] Slider enemyBar;
     [SerializeField] TextMeshProUGUI PlayerFollowers;
@@ -17,8 +16,8 @@ public class DebatBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxPlayerFollowers = GameLogic.playerHealth;
-        maxEnemyFollowers = GameLogic.enemyHealth;
+        maxPlayerFollowers = 0;
+        maxEnemyFollowers = 0;
  
     }
 
