@@ -95,6 +95,6 @@ public class CardEvent : MonoBehaviour
 
     public void UpdateCardEventUI()
     {
-        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/" + followersNeeded[currentCardEvent] + "Followers" ;
+        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/" + followersNeeded[currentCardEvent] + " Followers" ;
     }
 }

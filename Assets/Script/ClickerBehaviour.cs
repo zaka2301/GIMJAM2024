@@ -9,9 +9,13 @@ public class ClickerBehaviour : MonoBehaviour
     [SerializeField] TextMeshProUGUI followerText;
     [SerializeField] GameObject followerSlider;
     [SerializeField] GameObject popupPrefab;
+    [SerializeField] GameObject popupPrefab2;
+    [SerializeField] SpriteRenderer backroundRenderer;
+    [SerializeField] Sprite[] backgroundSprites1;
 
     public static int followers {get; private set; }
     [SerializeField] int maxFollowers;
+    private int startingFollowers;
 
     [SerializeField] int followerGain;
     [SerializeField] float bonusChance;
@@ -32,6 +36,12 @@ public class ClickerBehaviour : MonoBehaviour
         {
             followers = PlayerPrefs.GetInt("Followers", 0);
         }
+        else
+        {
+            followers = 0;
+        }
+        UpdateUI();
+        startingFollowers = followers;
     }
 
 
@@ -60,11 +70,11 @@ public class ClickerBehaviour : MonoBehaviour
         if (RNG < bonusChance)
             {
                 followers += bonusGain;
-                CreatePopup((Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + (followerGain + bonusGain) + " Bonus");
+                CreatePopup(popupPrefab, (Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + (followerGain + bonusGain) + " Bonus");
             }
             else
             {
-                CreatePopup((Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + followerGain);
+                CreatePopup(popupPrefab, (Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + followerGain);
             }
     }
 
@@ -82,8 +92,7 @@ public class ClickerBehaviour : MonoBehaviour
     {
         if (currentUpgrade < (maxUpgrade - 1))
         {
-            Debug.Log("true");
-            if (followers >= upgradeMilestone[currentUpgrade])
+            if (followers - startingFollowers >= upgradeMilestone[currentUpgrade])
             {
                 currentUpgrade++;
                 Upgrade();
@@ -94,12 +103,13 @@ public class ClickerBehaviour : MonoBehaviour
     void Upgrade()
     {
         followerGain++;
-        CreatePopup(new Vector2(0, 0), "Setting Upgrade!");
+        backroundRenderer.sprite = backgroundSprites1[currentUpgrade-1];
+        CreatePopup(popupPrefab2, new Vector2(-4.5f, 0), "Setting Upgrade!");
     }
 
-    void CreatePopup(Vector2 position, string text)
+    void CreatePopup(GameObject chosenPrefab, Vector2 position, string text)
     {
-        var popup = Instantiate(popupPrefab, position, Quaternion.identity);
+        var popup = Instantiate(chosenPrefab, position, Quaternion.identity);
         var temp = popup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         temp.text = text;
