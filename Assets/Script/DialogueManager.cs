@@ -7,14 +7,20 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
+    public Image backgroundImage;
     public TextMeshProUGUI dialogueText;
     public GameObject DialogueUI;
     public bool IsInDialogue = false;
+    private Queue<string> names;
+    private Queue<Sprite> scenes;
     private Queue<string> sentences;
+    private int currentSentence;
     
     // Start is called before the first frame update
     void Start()
     {
+        names = new Queue<string>();
+        scenes = new Queue<Sprite>();
         sentences = new Queue<string>();
     }
 
@@ -22,10 +28,20 @@ public class DialogueManager : MonoBehaviour
     {
         IsInDialogue = true;
         DialogueUI.SetActive(true);
-        nameText.text = dialogue.name;
 
+        names.Clear();
+        scenes.Clear();
         sentences.Clear();
+        currentSentence = 1;
 
+        foreach (string name in dialogue.names)
+        {
+            names.Enqueue(name);
+        }
+        foreach (Sprite scene in dialogue.scenes)
+        {
+            scenes.Enqueue(scene);
+        }
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
@@ -42,7 +58,10 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        nameText.text = names.Dequeue();
+        backgroundImage.sprite = scenes.Dequeue();
         string sentence = sentences.Dequeue();
+        StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
 
@@ -52,7 +71,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
 

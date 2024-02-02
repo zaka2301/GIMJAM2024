@@ -471,6 +471,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340428233}
   m_CullTransparentMesh: 1
+--- !u!1 &395668265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395668268}
+  - component: {fileID: 395668267}
+  - component: {fileID: 395668266}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &395668266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395668265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &395668267
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395668265}
+  m_CullTransparentMesh: 1
+--- !u!224 &395668268
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395668265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5067731622117584300}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &494533481
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,8 +582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.5, y: 0}
-  m_SizeDelta: {x: -185, y: -180}
+  m_AnchoredPosition: {x: 22.750015, y: -90}
+  m_SizeDelta: {x: -255.50003, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494533483
 MonoBehaviour:
@@ -531,7 +607,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla
     Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla
-    Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla '
+    Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla
+    Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -558,8 +635,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1342,18 +1419,18 @@ RectTransform:
   m_GameObject: {fileID: 1045091224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2125095333}
   - {fileID: 494533482}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 250}
-  m_SizeDelta: {x: 1700, y: 300}
+  m_AnchoredPosition: {x: 0, y: 205}
+  m_SizeDelta: {x: 2048, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045091226
 MonoBehaviour:
@@ -1483,7 +1560,7 @@ RectTransform:
   m_Children:
   - {fileID: 1019164232}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1503,14 +1580,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Narator
+    names:
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - News Lady
+    - Lord Swohair Two
+    - Lord Swohair Two
+    - Lord Swohair Two
+    scenes:
+    - {fileID: 21300000, guid: 4e6ab5448918714488584b18b934ea77, type: 3}
+    - {fileID: 21300000, guid: f09c8478baf60cc44b099f85c97a6cd7, type: 3}
+    - {fileID: 21300000, guid: b794b5e537a43fd4997d8370586a73ce, type: 3}
+    - {fileID: 21300000, guid: fdfd2ea37e46ff145bf9d5faacf57a94, type: 3}
+    - {fileID: 21300000, guid: cd0350c627a162046a6a5cb376de3fdd, type: 3}
+    - {fileID: 21300000, guid: a74bbe84dac5ebe4db7a4bf29a1cae19, type: 3}
+    - {fileID: 21300000, guid: fd7d3163908fe5a41a3fdd50913ec214, type: 3}
+    - {fileID: 21300000, guid: 9059f2af8ef5b7849933a36cafad71cb, type: 3}
+    - {fileID: 21300000, guid: 546a548538d147546929f98c2c47432a, type: 3}
+    - {fileID: 21300000, guid: 9c026d27a2cc88641b55eea7d2722749, type: 3}
+    - {fileID: 21300000, guid: 4e6ab5448918714488584b18b934ea77, type: 3}
+    - {fileID: 21300000, guid: f0ec1db4660ff764992de281d3b09ca9, type: 3}
+    - {fileID: 21300000, guid: f0ec1db4660ff764992de281d3b09ca9, type: 3}
+    - {fileID: 21300000, guid: 55622cb488e6e6643a333e5bf38a3b49, type: 3}
+    - {fileID: 21300000, guid: 55622cb488e6e6643a333e5bf38a3b49, type: 3}
+    - {fileID: 21300000, guid: 19c9c6b41a54f1a4aa91e603af67e017, type: 3}
+    - {fileID: 21300000, guid: 97a9b732b6880f24f8a284e24100ff1e, type: 3}
+    - {fileID: 21300000, guid: 6f7a7503a23420e408dcc16f80448295, type: 3}
     sentences:
-    - "Pada zaman X, disuatu tempat bernama \u2018nusantara\u2019 sebuah komunitas
-      hidup makmur dan sejahtera."
-    - Masyarakat setempat mempercayai legenda dari nenek moyang yang bersabda, lol
-      test
-    - "\u201Cakan lahir pemimpin yang dapat ___. Pemimpin itu akan lahir dari puncak
-      tertinggi di Jakarta (monas) dan akan meneruskan harapan bangsa.\u201D"
+    - To celebrate the 69th anniversary of Idgafnesia, we ask you all to commemorate
+      the history of Idgafnesia, which has brought peace and order between the Warlok
+      and Magna-Aim race.
+    - 'After the isolation protocol of Idgafnesia was removed, citizens of Susu Kotak
+      Galaxy simultaneously visited the planet of Idgafnesia for trading and investment
+      purposes. '
+    - However, citizens of Idgafnesia half-heartedly welcomed the visitors, making
+      the two races sensitive towards conflict.
+    - Exactly one year after the arrival of Magna-Aim, a massive land dispute occurred
+      at Idgafnesia,
+    - causing a colossal rampage between the Warlok and Magna-Aim race
+    - As the conflict started to escalate...
+    - "An unknown Dukun ceased the rampage, and prophesied that \u201Ca worthy leader
+      shall be born in the highest peak of Idgafnesia, and they shall bring all conflict
+      to an end.\u201D"
+    - However, when the land needed the Dukun most, he mysteriously vanished.
+    - "The prophecy turned out to be true. A few months after the Dukun\u2019s disappearance,
+      a leader was born at the peak of Mwonussy. By then, all conflicts came to an
+      end."
+    - Thanks to Lord Swohair Two, citizens of Idgafnesia lived harmoniously for 69
+      years.
+    - "We all hope that Idgafnesia\u2014"
+    - ...
+    - ...
+    - Breaking news. We were just informed that our leader, Lord Swohair Two, is
+      in a medical crisis.
+    - We are now broadcasting live from the hospital. It seems that Lord Swohair
+      Two would like to share a few words as his life is slowly slipping away.
+    - The people of Idgafnesia, whom i hold dearly, Warlok and Magna-Aim. It seems
+      that my time is up, and Idgafnesia shall be led by a new leader.
+    - "Never forget what was prophesied, \u201Ca worthy leader shall be born, and
+      he will make a difference for the planet of Idgafnesia.\u201D He shall be the
+      one that brings order for you all."
+    - "Witness, all of you! The highest peak of Idgafnesia! Mark my words!\r"
 --- !u!114 &1329015421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,8 +1934,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.8}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 290, y: -50}
-  m_SizeDelta: {x: 420, y: 45}
+  m_AnchoredPosition: {x: 379, y: -106}
+  m_SizeDelta: {x: 550, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125095334
 MonoBehaviour:
@@ -1842,8 +1984,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2778,7 +2920,7 @@ RectTransform:
   m_Children:
   - {fileID: 5067731621490352360}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2831,7 +2973,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5067731622117584288}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad2ceab7cc14f21428864e26981e34a8, type: 3}
   m_Name: 
@@ -2850,6 +2992,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 395668268}
   - {fileID: 1045091225}
   - {fileID: 5067731621983984836}
   - {fileID: 5067731622231356986}
@@ -2936,6 +3079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 2125095334}
+  backgroundImage: {fileID: 395668266}
   dialogueText: {fileID: 494533483}
   DialogueUI: {fileID: 1045091224}
   IsInDialogue: 0
@@ -3090,7 +3234,7 @@ RectTransform:
   - {fileID: 701189213}
   - {fileID: 233547317}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
