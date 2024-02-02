@@ -77,7 +77,7 @@ public class DebatBottomText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameLogic.isPlayerTurn && !GameLogic.doDebat)
+        if(GameLogic.isPlayerTurn && !GameLogic.canUseCard && !GameLogic.doDebat)
         {
 
             bottomText.text = "Press any arrow to start the debate.";

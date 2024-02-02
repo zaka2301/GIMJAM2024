@@ -7,6 +7,8 @@ using TMPro;
 public class GameLogic : MonoBehaviour
 {
 
+    [SerializeField] Animator enemyAnimator;
+
     [SerializeField] InputDisplay inputDisplay;
     [SerializeField] Animator summaryScreen;
 
@@ -56,7 +58,6 @@ public class GameLogic : MonoBehaviour
     public static int playerHealthBonus;
     public static int playerHealthBajer;
 
-    private static bool playerFirst;
 
 
     private int mistakeCount;
@@ -64,7 +65,7 @@ public class GameLogic : MonoBehaviour
     public static int turn;
 
     int maxTurn;
-    int stage;
+    static int stage;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +83,10 @@ public class GameLogic : MonoBehaviour
         mistakeCount = 0;
         turn = 0;
 
-        stage = PlayerPrefs.GetInt("Stage", 1);
+
+        stage = PlayerPrefs.GetInt("Stage");
+
+        enemyAnimator.SetInteger("Alien", stage);
         switch(stage)
         {
             case 1:
@@ -100,7 +104,7 @@ public class GameLogic : MonoBehaviour
                 Debug.Log("No Stage");
                 break;
         }
-        
+        maxTurn = 1;
 
         playerHealth = PlayerPrefs.GetInt("Followers", 100);
         enemyHealth = 100;
@@ -131,7 +135,7 @@ public class GameLogic : MonoBehaviour
                 midText.text = "Stage " + stage.ToString();
                 while(a < 1.0f)
                 {
-                    a += Time.deltaTime;
+                    a += Time.deltaTime * 2.0f;
                     midText.alpha = a;
                     yield return null;
 
@@ -142,7 +146,7 @@ public class GameLogic : MonoBehaviour
                 a = 0.0f;
                 while(a < 1.0f)
                 {
-                    a += Time.deltaTime;
+                    a += Time.deltaTime * 2.0f;
                     midText.alpha = 1.0f - a;
                     yield return null;
                 }
@@ -154,7 +158,7 @@ public class GameLogic : MonoBehaviour
                 midText.text = rand < 0.5f ? "Player goes first" : "Opponent goes first";
                 while(a < 1.0f)
                 {
-                    a += Time.deltaTime;
+                    a += Time.deltaTime * 2.0f;
                     midText.alpha = a;
                     yield return null;
 
@@ -170,7 +174,7 @@ public class GameLogic : MonoBehaviour
                     yield return null;
                 }
 
-                playerFirst = rand < 0.5f ? true : false;
+                isPlayerTurn = rand > 0.5f ? true : false; //a lil bit unintuitive, but because its inverted in first turn
 
                 StartCoroutine(SetUpTurn());
 
@@ -211,13 +215,12 @@ public class GameLogic : MonoBehaviour
         turn += 1;
         //skips = skips == 0 ? skips : skips - 1;
         isUsingCard = false;
-
-        Debug.Log(turn);
-
-        yield return new WaitForSeconds(2.0f);
+        isPlayerTurn = !isPlayerTurn;
+        //yield return new WaitForSeconds(2.0f);
 
         if(turn > maxTurn * 2) //debat selesai
         {
+            yield return new WaitForSeconds(2.0f);
             audioSource.PlayOneShot(koran, 1.0f);
             summaryScreen.enabled = true;
             StartCoroutine(BlackScreen());
@@ -325,14 +328,18 @@ public class GameLogic : MonoBehaviour
 
 
 
-        if(playerFirst && !roundSkip)
+        if(!roundSkip)
         {
-            if(turn % 2 != 0) 
-            {
-
-                StartCoroutine(SetUpPlayerTurn());
-            }
+ 
+            
+                if(isPlayerTurn)
+                {
+                    StartCoroutine(SetUpPlayerTurn());
+                    
+                }
             else
+            
+
             {
                 if(!enemySkip)
                 {
@@ -341,7 +348,7 @@ public class GameLogic : MonoBehaviour
                 else
                 {
                     enemySkip = false;
-                    StartCoroutine(PlayMidText("Mic Problem"));
+                    StartCoroutine(PlayMidText("Mic Problem", 1.0f));
                     yield return new WaitForSeconds(2.0f);
                     StartCoroutine(SetUpTurn());
                 }
@@ -466,7 +473,7 @@ public class GameLogic : MonoBehaviour
     {
         StartCoroutine(PlayMidText("Player's turn", 0.1f));
         yield return new WaitForSeconds(2.0f);
-        isPlayerTurn = true;
+
         timer = playerTimer;
         
         while(isPlayerTurn)
@@ -541,7 +548,7 @@ public class GameLogic : MonoBehaviour
         inputs[1] = 0;
         inputs[2] = 0;
         inputs[3] = 0;
-        isPlayerTurn = false;
+
 
         doDebat = false;
 

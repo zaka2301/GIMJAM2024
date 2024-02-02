@@ -37,7 +37,6 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     void Start()
     {
-        PlayerPrefs.SetInt("Stage", 1);
         audioSource.PlayOneShot(koranSFX, 1.0f);
         A1.SetActive(PlayerPrefs.GetInt("A1", 1) == 0 ? false : true);
         A2.SetActive(PlayerPrefs.GetInt("A2", 1) == 0 ? false : true);
