@@ -47,7 +47,7 @@ public class ClickerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) & PreGame.gameStarted)
+        if (Input.GetMouseButtonDown(0) & PreGame.gameStarted & Time.timeScale != 0f)
         {
             if (popupBloom < maxPopupBloom)
             {
