@@ -18,6 +18,7 @@ public class CountdownTimer : MonoBehaviour
         cardTime1 = Random.Range(45, 50);
         cardTime2 = Random.Range(15, 20);
         InvokeRepeating("TimerDecrease", 1f, 1f);
+        
     }
 
     void TimerDecrease()
