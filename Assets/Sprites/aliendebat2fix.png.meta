@@ -1,0 +1,1125 @@
+fileFormatVersion: 2
+guid: 53076859edd640947bfa1db38b3c9911
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 660
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: aliendebat2fix_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7fcb5f107307d94ba0fbaf934ad1e89
+      internalID: -1485395509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_1
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d16d010acac5a48ac3b5016c6c0384
+      internalID: 1396088614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_2
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c70e4a1972d774a9eeaf1debf105a9
+      internalID: 1225373802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_3
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 664f9e4cadd92b0438604b0d8420b9b1
+      internalID: -113543309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_4
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23511ff8e4c0d2743bcb9f6d2586fa22
+      internalID: -1496357047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_5
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc9684741518ff4494e208a50f3c94a
+      internalID: 663616402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_6
+      rect:
+        serializedVersion: 2
+        x: 3960
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22cda6e57a989e34b956e1494d22e6bc
+      internalID: 1529940270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_7
+      rect:
+        serializedVersion: 2
+        x: 4620
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642c69345618f4d48957906795b6bfab
+      internalID: 1782719058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_8
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 2640
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9dda351389f6b42baad24c0cde0ce0
+      internalID: 1685176318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30dcc51ae4e1df4418f1a0c9bc981470
+      internalID: 255398415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdab62e82a38fa74d8b4997438ebb668
+      internalID: 902413948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_11
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bde4a636534434aa70767ad409de2a
+      internalID: 911712002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_12
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dffa765b9e0314990d352c92919d3f
+      internalID: -985754634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_13
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40751eb42b989fa4997a82cb392d9a7a
+      internalID: 441324664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_14
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f5318f4f8e17734ba6283113c3ba88a
+      internalID: -1411529247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_15
+      rect:
+        serializedVersion: 2
+        x: 3960
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbe1b8e0c1e1444fb64a61a8e84fc10
+      internalID: -1697929300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_16
+      rect:
+        serializedVersion: 2
+        x: 4620
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a764e2e1c0112d9499459cd5f3dd1616
+      internalID: 1246645004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_17
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 1980
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669ae18f8fbfc34438960f9df2153a5e
+      internalID: 681325334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a7a015257b14744a9a7167659b58bcb
+      internalID: -972285243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_19
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d9bd9cb0eb02c147ac0ecc8d5668502
+      internalID: -1590831666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_20
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895e6cc14f94cbe4b932fcfbc7b1eb72
+      internalID: 241443943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_21
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d370fca63a6c8e140a9a1d385a8bfaad
+      internalID: 902469775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_22
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df8045ec99e9f7f40985dab1904cbd79
+      internalID: -470191335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_23
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3869515e4e22cb04c9cb7a81cba8d478
+      internalID: -1924310909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_24
+      rect:
+        serializedVersion: 2
+        x: 3960
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9bd2603d0c762847ace7fe94f6f7ba8
+      internalID: -1548447399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_25
+      rect:
+        serializedVersion: 2
+        x: 4620
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db0d2d54c9264e4c94f2303b0ddf303
+      internalID: 1537348477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_26
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 1320
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761d7971efa547f4da9f619874a20954
+      internalID: -1609154309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a03e6ec8cc762f4aa09447a3bada467
+      internalID: -940052292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_28
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa94d8f1748bfb468fe94ee9cf4cbe0
+      internalID: -1279755904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_29
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9e66f885c3b1846a6d139675170586
+      internalID: -790198834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_30
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be51205d2436a3949827241fe10b29f2
+      internalID: -2088077218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_31
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aec3f0e412e0ad4a95b0fd635e46efc
+      internalID: 1131034689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_32
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8cf2f2b1ccbea40aa188e18a0abe0b
+      internalID: -1875536970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_33
+      rect:
+        serializedVersion: 2
+        x: 3960
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7c64c9f52ff7d4594df73fae5a3574
+      internalID: -1513375594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_34
+      rect:
+        serializedVersion: 2
+        x: 4620
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 442daa0f59fa0b74296025a8662d96d5
+      internalID: -477230955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_35
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 660
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e868a6c4c820cbe4dad88bf3dddfd1b1
+      internalID: -2055452914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5be35c0c0e2f048a6fe624d1776de3
+      internalID: 375850198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_37
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d51c06b29905ba1449112d8451ed8c1c
+      internalID: -1787832015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_38
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ecd99f479262c0459fd480d32213402
+      internalID: -1005919921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_39
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908eed0eba3dcdd4f97babf04203f006
+      internalID: -1822236127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_40
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e731bc72652720b418b4671f35374e7e
+      internalID: -1009767954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_41
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fad8c029a807f64c9b6232b8f5132a9
+      internalID: 458632103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_42
+      rect:
+        serializedVersion: 2
+        x: 3960
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef883708b3a84dc4b81785b5c52755b1
+      internalID: -732195882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_43
+      rect:
+        serializedVersion: 2
+        x: 4620
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f0f8772362695e4c9faac33a5653d35
+      internalID: -2135818338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aliendebat2fix_44
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 0
+        width: 660
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a7d9d4bdc9939f42938336370915c0d
+      internalID: 1856700630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      aliendebat2fix_0: -1485395509
+      aliendebat2fix_1: 1396088614
+      aliendebat2fix_10: 902413948
+      aliendebat2fix_11: 911712002
+      aliendebat2fix_12: -985754634
+      aliendebat2fix_13: 441324664
+      aliendebat2fix_14: -1411529247
+      aliendebat2fix_15: -1697929300
+      aliendebat2fix_16: 1246645004
+      aliendebat2fix_17: 681325334
+      aliendebat2fix_18: -972285243
+      aliendebat2fix_19: -1590831666
+      aliendebat2fix_2: 1225373802
+      aliendebat2fix_20: 241443943
+      aliendebat2fix_21: 902469775
+      aliendebat2fix_22: -470191335
+      aliendebat2fix_23: -1924310909
+      aliendebat2fix_24: -1548447399
+      aliendebat2fix_25: 1537348477
+      aliendebat2fix_26: -1609154309
+      aliendebat2fix_27: -940052292
+      aliendebat2fix_28: -1279755904
+      aliendebat2fix_29: -790198834
+      aliendebat2fix_3: -113543309
+      aliendebat2fix_30: -2088077218
+      aliendebat2fix_31: 1131034689
+      aliendebat2fix_32: -1875536970
+      aliendebat2fix_33: -1513375594
+      aliendebat2fix_34: -477230955
+      aliendebat2fix_35: -2055452914
+      aliendebat2fix_36: 375850198
+      aliendebat2fix_37: -1787832015
+      aliendebat2fix_38: -1005919921
+      aliendebat2fix_39: -1822236127
+      aliendebat2fix_4: -1496357047
+      aliendebat2fix_40: -1009767954
+      aliendebat2fix_41: 458632103
+      aliendebat2fix_42: -732195882
+      aliendebat2fix_43: -2135818338
+      aliendebat2fix_44: 1856700630
+      aliendebat2fix_5: 663616402
+      aliendebat2fix_6: 1529940270
+      aliendebat2fix_7: 1782719058
+      aliendebat2fix_8: 1685176318
+      aliendebat2fix_9: 255398415
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
