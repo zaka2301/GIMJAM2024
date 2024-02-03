@@ -300,7 +300,13 @@ public class GameLogic : MonoBehaviour
             playerHealth -= playerHealthBajer;
 
             hasWon = playerHealth >= enemyHealth ? true : false;
-            GameObject.Find("Continue").GetComponent<Button>().interactable = hasWon;
+
+            int win = PlayerPrefs.GetInt("Win");
+            if(hasWon)
+            {
+                PlayerPrefs.SetInt("Followers", GameLogic.playerHealth);
+            }
+            PlayerPrefs.SetString("Cutscene", stage == 5 ? (win >= 3 ? "EndWin" : "EndLose") : (hasWon ? "DebatWin" : "DebatLose"));
 
             StartCoroutine(BlackScreen());
 

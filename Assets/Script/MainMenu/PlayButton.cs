@@ -13,6 +13,7 @@ public class PlayButton : MonoBehaviour
         int stage = PlayerPrefs.GetInt("Stage", 0);
         if(stage == 0)
         {
+            PlayerPrefs.SetInt("Win", 0);
             PlayerPrefs.SetInt("Stage", 1);
             PlayerPrefs.SetInt("Followers", 0);
             PlayerPrefs.SetString("Cutscene", "Opening");

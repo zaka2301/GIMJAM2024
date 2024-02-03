@@ -18,16 +18,16 @@ public class SummaryButton : MonoBehaviour
     
     public void Retry()
     {
-        PlayerPrefs.SetString("Cutscene", "DebatLose");
+
         StartCoroutine(LoadScene("Dialogues"));
     }
 
     public void Continue()
     {
         int s = PlayerPrefs.GetInt("Stage");
+        int win = PlayerPrefs.GetInt("Win");
         PlayerPrefs.SetInt("Stage", s + 1);
-        PlayerPrefs.SetInt("Followers", GameLogic.playerHealth);
-        PlayerPrefs.SetString("Cutscene", "DebatWin");
+        PlayerPrefs.Setint("Win", win + (hasWon ? 1 : 0));
         PlayerPrefs.Save();
         StartCoroutine(LoadScene("Dialogues"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
