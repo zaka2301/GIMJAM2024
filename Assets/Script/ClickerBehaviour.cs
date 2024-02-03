@@ -12,6 +12,9 @@ public class ClickerBehaviour : MonoBehaviour
     [SerializeField] GameObject popupPrefab2;
     [SerializeField] SpriteRenderer backroundRenderer;
     [SerializeField] Sprite[] backgroundSprites1;
+    [SerializeField] Sprite[] backgroundSprites2;
+    [SerializeField] Sprite[] backgroundSprites4;
+    [SerializeField] Sprite[] backgroundSprites5;
 
     public static int followers {get; private set; }
     [SerializeField] int maxFollowers;
@@ -41,6 +44,7 @@ public class ClickerBehaviour : MonoBehaviour
             followers = 0;
         }
         UpdateUI();
+        currentUpgrade = 0;
         startingFollowers = followers;
     }
 
@@ -90,8 +94,10 @@ public class ClickerBehaviour : MonoBehaviour
 
     void CheckForUpgrade()
     {
+        Debug.Log("Ceccking " + currentUpgrade + " " + maxUpgrade);
         if (currentUpgrade < (maxUpgrade - 1))
         {
+            Debug.Log("available" + startingFollowers + " " + upgradeMilestone[currentUpgrade]);
             if (followers - startingFollowers >= upgradeMilestone[currentUpgrade])
             {
                 currentUpgrade++;
@@ -103,7 +109,25 @@ public class ClickerBehaviour : MonoBehaviour
     void Upgrade()
     {
         followerGain++;
-        backroundRenderer.sprite = backgroundSprites1[currentUpgrade-1];
+        int stage = PlayerPrefs.GetInt("Stage", 1);
+        switch (stage)
+        {
+            case 1:
+                backroundRenderer.sprite = backgroundSprites1[currentUpgrade-1];
+                break;
+            case 2:
+                backroundRenderer.sprite = backgroundSprites2[currentUpgrade-1];
+                break;
+            case 3:
+                break;
+            case 4:
+                backroundRenderer.sprite = backgroundSprites4[currentUpgrade-1];
+                break;
+            case 5:
+                backroundRenderer.sprite = backgroundSprites5[currentUpgrade-1];
+                break;
+        }
+            
         CreatePopup(popupPrefab2, new Vector2(-4.5f, 0), "Setting Upgrade!");
     }
 
