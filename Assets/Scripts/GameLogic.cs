@@ -300,7 +300,7 @@ public class GameLogic : MonoBehaviour
             playerHealth -= playerHealthBajer;
 
             hasWon = playerHealth >= enemyHealth ? true : false;
-            //GameObject.Find("Continue").GetComponent<Button>().interactable = hasWon;
+            GameObject.Find("Continue").GetComponent<Button>().interactable = hasWon;
 
             StartCoroutine(BlackScreen());
 
