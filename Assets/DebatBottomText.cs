@@ -64,7 +64,7 @@ public class DebatBottomText : MonoBehaviour
         if(GameLogic.showTips && !GameLogic.doDebat)
         {
 
-            bottomText.text = "Press any arrow to start the debate.";
+            bottomText.text = "Press any arrow key to start the debate.";
             return;
 
         }
@@ -73,7 +73,7 @@ public class DebatBottomText : MonoBehaviour
         {
 
 
-            bottomText.text = displayText == "" ?  "Prepare for the round." : displayText;
+            bottomText.text = displayText == "" ?  "Use a card or press any arrow key to skip." : displayText;
         }
         else
         {

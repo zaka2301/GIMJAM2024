@@ -11,8 +11,8 @@ public class DebatBar : MonoBehaviour
     [SerializeField] TextMeshProUGUI PlayerFollowers;
     [SerializeField] TextMeshProUGUI EnemyFollowers;
 
-    private int maxPlayerFollowers;
-    private int maxEnemyFollowers;
+    public int maxPlayerFollowers;
+    public int maxEnemyFollowers;
     // Start is called before the first frame update
     void Start()
     {

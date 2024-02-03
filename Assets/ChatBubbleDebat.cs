@@ -1,14 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChatBubbleDebat : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Sprite[] basicSprites;
+    [SerializeField] private Sprite attackSprite;
+    private int spriteIndex;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        //transform.localRotation = Quaternion.Euler(0, 0, (Time.deltaTime % 2.0f < 1.0f) ?  10 : -10);
+        spriteIndex = 0;
     }
+
+    public void NextSprite()
+    {
+        spriteIndex = (spriteIndex + 1) % 2;
+        this.gameObject.GetComponent<Image>().sprite = basicSprites[spriteIndex];
+    }
+
+    public void AttackSprite()
+    {
+        this.gameObject.SetActive(true);
+        this.gameObject.GetComponent<Image>().sprite = attackSprite;
+    }
+    
 }

@@ -38,16 +38,8 @@ public class GameLogic : MonoBehaviour
 
     [SerializeField] float lifeStealMultiplier;
 
-    [SerializeField] GameObject playerBubble;
-    [SerializeField] GameObject enemyBubble;
-
-    Sprite chatp1;
-    Sprite chatp2;
-    Sprite chatp3;
-    Sprite chate1;
-    Sprite chate2;
-    Sprite chate3;
-
+    [SerializeField] ChatBubbleDebat playerBubble;
+    [SerializeField] ChatBubbleDebat enemyBubble;
     Transform cardDestination;
     Transform cardDestination2;
     static AudioSource audioSource;
@@ -64,6 +56,8 @@ public class GameLogic : MonoBehaviour
 
     public static int enemyHealth;
 
+    public static bool hasWon;
+
     public static float playerDamageMultiplier; //player damage to enemy
     public static float enemyDamageMultiplier;// enemy damage to player
 
@@ -72,6 +66,8 @@ public class GameLogic : MonoBehaviour
     public static float timerMultiplier;
 
 
+    private Image playerSprite;
+    private Image enemySprite;
     public static bool enemySkip; 
     public static bool roundSkip;
 
@@ -89,14 +85,10 @@ public class GameLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasWon = false;
 
-
-        chatp1 = Resources.Load<Sprite>("chat debat");
-        chatp2 = Resources.Load<Sprite>("chat debat2");
-        chatp3 = Resources.Load<Sprite>("chat debat attack");
-        chate1 = Resources.Load<Sprite>("chat debat enemy");
-        chate2 = Resources.Load<Sprite>("chat debat2 enemy");
-        chate3 = Resources.Load<Sprite>("chat debat attack enemy");
+        playerSprite = GameObject.Find("Player Sprite").GetComponent<Image>();
+        enemySprite = GameObject.Find("Enemy Sprite").GetComponent<Image>();
 
         playerDamageMultiplier = 1.0f;
         enemyDamageMultiplier = 1.0f;
@@ -147,7 +139,7 @@ public class GameLogic : MonoBehaviour
         }
 
 
-        playerHealth = PlayerPrefs.GetInt("Followers", 0);
+        playerHealth = 500;//PlayerPrefs.GetInt("Followers", 0);
         
 
         playerTimer = 2.0f;
@@ -169,28 +161,34 @@ public class GameLogic : MonoBehaviour
         StartCoroutine(PlayMidText("Start"));
 
         StartCoroutine(StartBubble(enemyBubble));
+        StartCoroutine(StartBubble(playerBubble));
 
     }
 
 
-    IEnumerator StartBubble(GameObject bubble)
+    IEnumerator StartBubble(ChatBubbleDebat bubble)
     {
             float rand = Random.Range(0.0f, 1.0f);
 
             if (rand < 0.5f)
             {
-                bubble.SetActive(true);
+                bubble.NextSprite();
+
+                bubble.gameObject.SetActive(true);
                 yield return new WaitForSeconds(2.0f);
-                bubble.SetActive(false);
+                bubble.gameObject.SetActive(false);
+                
             }
             else
             {
                 yield return new WaitForSeconds(rand);
             }
+            
             yield return new WaitForSeconds(2.0f);
             StartCoroutine(StartBubble(bubble));
             yield break;
     }
+    
 
 
     IEnumerator PlayMidText(string type, float sec = 2.0f)
@@ -286,18 +284,22 @@ public class GameLogic : MonoBehaviour
         //skips = skips == 0 ? skips : skips - 1;
         isUsingCard = false;
         
-        
-
-        
         yield return new WaitForSeconds(2.0f);
+
+
+
         isPlayerTurn = !isPlayerTurn;
         if(turn > maxTurn * 2) //debat selesai
         {
             
             audioSource.PlayOneShot(koran, 1.0f);
+            
             summaryScreen.enabled = true;
 
             playerHealth -= playerHealthBajer;
+
+            hasWon = playerHealth >= enemyHealth ? true : false;
+            GameObject.Find("Continue").GetComponent<Button>().interactable = hasWon;
 
             StartCoroutine(BlackScreen());
 
@@ -362,6 +364,7 @@ public class GameLogic : MonoBehaviour
                     case "A1":
                         enemyHealth = (int) ( (float) enemyHealth * 0.80f); //-0.2%
                         StartCoroutine(debatBar.UpdateBar(5.0f));
+                        StartCoroutine(RedDamage(enemySprite));
                         yield return new WaitForSeconds(5.0f);
                         break;
                     case "A2":
@@ -378,7 +381,7 @@ public class GameLogic : MonoBehaviour
                         playerHealthBonus = (int) ( (float) playerHealth * 0.25f);
                         playerHealth += playerHealthBonus;
                         StartCoroutine(debatBar.UpdateBar());
-
+                        
                         playerDamageMultiplier = 1.3f;
                         break;
                     case "D3":
@@ -532,6 +535,18 @@ public class GameLogic : MonoBehaviour
         }
     }
 
+    IEnumerator RedDamage(Image character)
+    {
+        float a = 0.0f;
+        while(a < 2.0f)
+        {
+            a += Time.deltaTime * 2.0f;
+            character.color = new Color(1.0f, (a-1.0f)*(a-1.0f), (a-1.0f)*(a-1.0f), 1.0f);
+            yield return null;
+        }
+
+    }
+
     private void KeyPress(int key)
     {
 
@@ -572,15 +587,18 @@ public class GameLogic : MonoBehaviour
 
         audioSource.Stop();
         
-
+        enemyBubble.gameObject.transform.SetAsLastSibling();
+        enemyBubble.AttackSprite();
         PlayHitSound();
-        float damage =  ( (float) playerHealth * 0.33f * enemyDamageMultiplier); // -1/5
+        float damage =  ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
         playerHealth -= (int) damage;
-        enemyHealth += (int)(damage * lifeStealMultiplier);
-
+        enemyHealth += (int)(damage / debatBar.maxPlayerFollowers * debatBar.maxEnemyFollowers * lifeStealMultiplier);
+        StartCoroutine(RedDamage(playerSprite));
 
         StartCoroutine(SetUpTurn());
-
+        yield return new WaitForSeconds(2.0f);
+        enemyBubble.gameObject.SetActive(false);
+        
         yield break;
     }
 
@@ -622,7 +640,8 @@ public class GameLogic : MonoBehaviour
                 if(timer <= 0 || currentInput < 0)
                 {
                     timer = 0.0f;
-                    
+                    doDebat = false;
+
                     break;
                     
                 }
@@ -630,7 +649,9 @@ public class GameLogic : MonoBehaviour
                 {
                     timer -= Time.deltaTime;
                 }
+                playerBubble.gameObject.SetActive(false);
             }
+            
             else 
             {
                 if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -651,14 +672,18 @@ public class GameLogic : MonoBehaviour
             if(currentInput < 0) //berhasil hit semua
             {
                 float damage =  ( (float) enemyHealth * 0.33f * playerDamageMultiplier); // -1/3
-                playerHealth += (int) (damage * lifeStealMultiplier); // * x%
+                playerHealth += (int) (damage/debatBar.maxEnemyFollowers * debatBar.maxPlayerFollowers * lifeStealMultiplier); // * x%
                 enemyHealth -= (int) damage;
+                StartCoroutine(RedDamage(enemySprite));
+                playerBubble.gameObject.transform.SetAsLastSibling();
+                playerBubble.AttackSprite();
             }
             else
             {
                 float damage = ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
                 playerHealth -= (int) damage;
-                enemyHealth += (int) (damage * lifeStealMultiplier);
+                StartCoroutine(RedDamage(playerSprite));
+                enemyHealth += (int) (damage / debatBar.maxPlayerFollowers * debatBar.maxEnemyFollowers * lifeStealMultiplier);
             }
         }
         timerBar.SetActive(false);
@@ -669,12 +694,14 @@ public class GameLogic : MonoBehaviour
         inputs[3] = 0;
 
 
-        doDebat = false;
         showTips = false;
 
 
 
         StartCoroutine(SetUpTurn());
+        yield return new WaitForSeconds(2.0f);
+        playerBubble.gameObject.SetActive(false);
+        
         yield break;
 
     }
