@@ -36,6 +36,7 @@ public class ClickerBehaviour : MonoBehaviour
 
     [SerializeField] AudioClip tapSound;
     [SerializeField] AudioClip milestoneSound;
+    [SerializeField] AudioClip sleepingSound;
 
     void Start()
     {
@@ -136,6 +137,7 @@ public class ClickerBehaviour : MonoBehaviour
                 backroundRenderer.sprite = backgroundSprites2[currentUpgrade-1];
                 break;
             case 3:
+                GetComponent<AudioSource>().PlayOneShot(sleepingSound, 1f);
                 break;
             case 4:
                 backroundRenderer.sprite = backgroundSprites4[currentUpgrade-1];
