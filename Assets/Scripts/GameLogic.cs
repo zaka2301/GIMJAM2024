@@ -104,6 +104,7 @@ public class GameLogic : MonoBehaviour
 
         mistakeCount = 0;
         turn = 0;
+        round = 0;
 
         
 
@@ -115,23 +116,23 @@ public class GameLogic : MonoBehaviour
         switch(stage)
         {
             case 1:
-                enemyHealth = 500;
-                maxTurn = 3;
-                break;
-            case 2:
-                enemyHealth = 1000;
-                maxTurn = 3;
-                break;
-            case 3:
                 enemyHealth = 1500;
                 maxTurn = 3;
                 break;
+            case 2:
+                enemyHealth = 3000;
+                maxTurn = 3;
+                break;
+            case 3:
+                enemyHealth = 6000;
+                maxTurn = 3;
+                break;
             case 4:
-                enemyHealth = 2000;
+                enemyHealth = 12000;
                 maxTurn = 4;
                 break;
             case 5:
-                enemyHealth = 3000;
+                enemyHealth = 24000;
                 maxTurn = 5;
                 break;
             default:
@@ -292,7 +293,7 @@ public class GameLogic : MonoBehaviour
                 break;
         }
     }
-
+    private int round = 0;
 
     IEnumerator SetUpTurn() // 1 = player, 2 = opp
     {    
@@ -344,7 +345,7 @@ public class GameLogic : MonoBehaviour
         }
         else if(turn % 2 != 0) // round change
         {
-            
+            round += 1;
             //reset multiplier
             if(!dukunTurn)
             {
@@ -357,7 +358,8 @@ public class GameLogic : MonoBehaviour
             }
             playerDamageMultiplier = 1.0f;
             timerMultiplier = 1.0f;
-
+            StartCoroutine(PlayMidText("Round " + round.ToString() +"/"+maxTurn.ToString(), 0.5f));
+            yield return new WaitForSeconds(2.5f);
             StartCoroutine(PlayMidText("Ready", 0.5f));
             yield return new WaitForSeconds(2.0f);
 
@@ -619,7 +621,7 @@ public class GameLogic : MonoBehaviour
         enemyBubble.gameObject.transform.SetAsLastSibling();
         enemyBubble.AttackSprite();
         PlayHitSound();
-        float damage =  ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+        float damage =  ( (float) playerHealth * 0.25f * enemyDamageMultiplier); // -1/5
         playerHealth -= (int) damage;
         enemyHealth += (int)(damage / debatBar.maxPlayerFollowers * debatBar.maxEnemyFollowers * lifeStealMultiplier);
         StartCoroutine(RedDamage(playerSprite));
@@ -709,7 +711,7 @@ public class GameLogic : MonoBehaviour
             }
             else
             {
-                float damage = ( (float) playerHealth * 0.20f * enemyDamageMultiplier); // -1/5
+                float damage = ( (float) playerHealth * 0.25f * enemyDamageMultiplier); // -1/5
                 playerHealth -= (int) damage;
                 StartCoroutine(RedDamage(playerSprite));
                 enemyHealth += (int) (damage / debatBar.maxPlayerFollowers * debatBar.maxEnemyFollowers * lifeStealMultiplier);
