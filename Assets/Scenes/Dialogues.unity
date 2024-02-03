@@ -1018,27 +1018,78 @@ MonoBehaviour:
     - 
     - 
   debatWin:
-    names: []
-    scenes: []
-    sentences: []
+    names:
+    - Player
+    - Wapres
+    scenes:
+    - {fileID: 21300000, guid: 8900129e9813fdb4b8987068935483ab, type: 3}
+    - {fileID: 21300000, guid: 8900129e9813fdb4b8987068935483ab, type: 3}
+    sentences:
+    - adslsjkdaflj;asd
+    - asdhjfhasjkdlf
   debatLose:
     names:
-    - 
-    - 
+    - Player
+    - Player
+    - Wapres
     scenes:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: c57f291e023fdc64ea5bd8b6688f8d25, type: 3}
+    - {fileID: 21300000, guid: c57f291e023fdc64ea5bd8b6688f8d25, type: 3}
+    - {fileID: 21300000, guid: c57f291e023fdc64ea5bd8b6688f8d25, type: 3}
     sentences:
-    - 
-    - 
+    - I will not give up...
+    - for the sake of this country...
+    - dsfsdfdsfd BAJER
+  debatMonologue:
+    names:
+    - Playeer
+    scenes:
+    - {fileID: 21300000, guid: a98566b8eb810d247b33705b85e1ddb6, type: 3}
+    sentences:
+    - ngriaeinerigegri
   endWin:
-    names: []
-    scenes: []
-    sentences: []
+    names:
+    - Player
+    - Player
+    - 
+    - 
+    - Player
+    - ???
+    - Player
+    - ???
+    - Players's son
+    scenes:
+    - {fileID: 21300000, guid: 8411898c05e97e64aad3d6adfa71655c, type: 3}
+    - {fileID: 21300000, guid: 8411898c05e97e64aad3d6adfa71655c, type: 3}
+    - {fileID: 21300000, guid: 8411898c05e97e64aad3d6adfa71655c, type: 3}
+    - {fileID: 21300000, guid: dc3b2f39d2043d44fb19af6ec30304f8, type: 3}
+    - {fileID: 21300000, guid: 09f6eb56b8ff4d7418e0504590fb6055, type: 3}
+    - {fileID: 21300000, guid: 5608780da3ccb2b42abb71ca0bade1d2, type: 3}
+    - {fileID: 21300000, guid: 59094fa67f50a5e44b712c9cec52e74f, type: 3}
+    - {fileID: 21300000, guid: 59094fa67f50a5e44b712c9cec52e74f, type: 3}
+    - {fileID: 21300000, guid: 1027f5ea718a9d84dbfa7be3c70548f0, type: 3}
+    sentences:
+    - 'My fellow comrades, I salute you all for the continuous support you have given
+      me throughout the campaign. '
+    - I promise I will maintain the welfare and peace as the previous predecessor.
+      Together, we shall prevail!
+    - '*crowd cheers*'
+    - 
+    - Are you ready?
+    - I feel a little bit anxious...
+    - "I have prepared you my whole life for this moment. Don\u2019t mess it up."
+    - Okay...
+    - ...Dad.
   endLose:
-    names: []
-    scenes: []
-    sentences: []
+    names:
+    - Player
+    - Player
+    scenes:
+    - {fileID: 21300000, guid: 2110bdc454143a046ba4a3d93dd1386e, type: 3}
+    - {fileID: 21300000, guid: 2110bdc454143a046ba4a3d93dd1386e, type: 3}
+    sentences:
+    - I will not accept the result of this campaign due to the indication of fraud!
+    - This is not acceptable! I will not give up fighting for my rights!
 --- !u!4 &548052656
 Transform:
   m_ObjectHideFlags: 0
@@ -1577,7 +1628,7 @@ RectTransform:
   - {fileID: 2125095333}
   - {fileID: 494533482}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1697,7 +1748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1329015419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1712,7 +1763,7 @@ RectTransform:
   m_Children:
   - {fileID: 1019164232}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1849,8 +1900,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1329015420}
-        m_TargetAssemblyTypeName: TestDialogue, Assembly-CSharp
+      - m_Target: {fileID: 548052655}
+        m_TargetAssemblyTypeName: DialogueLists, Assembly-CSharp
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -1974,6 +2025,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636502555}
+  m_CullTransparentMesh: 1
+--- !u!1 &1908924613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1908924614}
+  - component: {fileID: 1908924616}
+  - component: {fileID: 1908924615}
+  m_Layer: 5
+  m_Name: Transitor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1908924614
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908924613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5067731622117584300}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1908924615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908924613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1908924616
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908924613}
   m_CullTransparentMesh: 1
 --- !u!1 &1974539681
 GameObject:
@@ -3072,7 +3199,7 @@ RectTransform:
   m_Children:
   - {fileID: 5067731621490352360}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3145,6 +3272,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 395668268}
+  - {fileID: 1908924614}
   - {fileID: 1045091225}
   - {fileID: 5067731621983984836}
   - {fileID: 5067731622231356986}
@@ -3232,6 +3360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 2125095334}
   backgroundImage: {fileID: 395668266}
+  transitor: {fileID: 1908924615}
   dialogueText: {fileID: 494533483}
   DialogueUI: {fileID: 1045091224}
   IsInDialogue: 0
@@ -3386,7 +3515,7 @@ RectTransform:
   - {fileID: 701189213}
   - {fileID: 233547317}
   m_Father: {fileID: 5067731622117584300}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

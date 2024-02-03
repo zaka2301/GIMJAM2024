@@ -7,13 +7,16 @@ public class DialogueLists : MonoBehaviour
     public Dialogue opening;
     public Dialogue debatWin;
     public Dialogue debatLose;
+    public Dialogue debatMonologue;
     public Dialogue endWin;
     public Dialogue endLose;
 
     private DialogueManager dialogueManager;
 
-    void Start()
+    public void Start()
     {
+
+        
         dialogueManager = FindObjectOfType<DialogueManager>();
 
         string cutscene = PlayerPrefs.GetString("Cutscene", "Opening");
@@ -22,6 +25,21 @@ public class DialogueLists : MonoBehaviour
         {
             case "Opening":
                 FindObjectOfType<DialogueManager>().StartDialogue(opening);
+                break;
+            case "DebatWin":
+                FindObjectOfType<DialogueManager>().StartDialogue(debatWin);
+                break;
+            case "DebatLose":
+                FindObjectOfType<DialogueManager>().StartDialogue(debatLose);
+                break;
+            case "EndWin":
+                FindObjectOfType<DialogueManager>().StartDialogue(endWin);
+                break;
+            case "EndLose":
+                FindObjectOfType<DialogueManager>().StartDialogue(endLose);
+                break;
+            case "DebatMonologue":
+                FindObjectOfType<DialogueManager>().StartDialogue(debatMonologue);
                 break;
             default:
                 Debug.Log("no cutscene loaded");

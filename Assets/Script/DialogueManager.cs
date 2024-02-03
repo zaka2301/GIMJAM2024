@@ -8,22 +8,26 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public Image backgroundImage;
+    public Image transitor;
     public TextMeshProUGUI dialogueText;
     public GameObject DialogueUI;
     public bool IsInDialogue = false;
     private bool IsTyping = false;
-    private Queue<string> names;
-    private Queue<Sprite> scenes;
-    private Queue<string> sentences;
-    private string sentence;
+    private Queue<string> names = new Queue<string>();
+    private Queue<Sprite> scenes = new Queue<Sprite>();
+    private Queue<string> sentences = new Queue<string>();
+    private string sentence = "";
     private int currentSentence;
+
+    private IEnumerator typeCoroutine;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         names = new Queue<string>();
         scenes = new Queue<Sprite>();
         sentences = new Queue<string>();
+        
     }
 
     public void StartDialogue (Dialogue dialogue)
@@ -54,6 +58,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        Debug.Log(sentences.Count);
         if (sentences.Count == 0)
         {
             EndDialogue();
@@ -63,16 +68,35 @@ public class DialogueManager : MonoBehaviour
         if(IsTyping)
         {
             StopAllCoroutines();
+            transitor.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             dialogueText.text = sentence;
             IsTyping = false;
         }
         else
         {
+            StartCoroutine(Transit());
             nameText.text = names.Dequeue();
             backgroundImage.sprite = scenes.Dequeue();
             sentence = sentences.Dequeue();
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(sentence));
+
+            typeCoroutine = TypeSentence(sentence);
+            StopCoroutine(typeCoroutine);
+
+            StartCoroutine(typeCoroutine);
+        }
+    }
+
+    IEnumerator Transit()
+    {
+        transitor.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        transitor.sprite = backgroundImage.sprite;
+        yield return new WaitForSeconds(0.1f);
+        float alpha = 1.0f;
+        while(alpha > 0.0f)
+        {
+            alpha -= Time.deltaTime * 2.0f;
+            transitor.color = new Color(1.0f, 1.0f, 1.0f, alpha);
+            yield return null;
         }
     }
 
