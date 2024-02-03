@@ -26,6 +26,11 @@ public class SummaryText : MonoBehaviour
 
         while(follower != followerGain)
         {
+            if(Input.GetMouseButtonDown(0))
+            {
+                followersGained.text = followerGain.ToString();
+                break;
+            }
             follower += i;
             followersGained.text = follower.ToString();
             yield return null;
@@ -41,6 +46,11 @@ public class SummaryText : MonoBehaviour
 
         while(follower != GameLogic.playerHealth)
         {
+            if(Input.GetMouseButtonDown(0))
+            {
+                followersTotal.text = GameLogic.playerHealth.ToString();
+                break;
+            }
             follower += i;
             followersTotal.text = follower.ToString();
             yield return null;
