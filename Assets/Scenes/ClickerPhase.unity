@@ -272,6 +272,7 @@ MonoBehaviour:
   upgradeMilestone: 640000002c010000f4010000bc020000e8030000
   tapSound: {fileID: 8300000, guid: cc95c2f5371240f4c8716ad0eb66381f, type: 3}
   milestoneSound: {fileID: 8300000, guid: b6323fbeda5502b4782c11d384ab8c5a, type: 3}
+  sleepingSound: {fileID: 8300000, guid: 465854b02d29f734fab6e0b9d28141e1, type: 3}
 --- !u!4 &186407453
 Transform:
   m_ObjectHideFlags: 0
