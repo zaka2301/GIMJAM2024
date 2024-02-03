@@ -216,6 +216,28 @@ public class GameLogic : MonoBehaviour
                     midText.alpha = 1.0f - a;
                     yield return null;
                 }
+                yield return new WaitForSeconds(0.5f);
+                a = 0.0f;
+                midText.text = maxTurn.ToString() + " Rounds";
+                while(a < 1.0f)
+                {
+                    a += Time.deltaTime * 2.0f;
+                    midText.alpha = a;
+                    yield return null;
+
+                }
+
+                yield return new WaitForSeconds(sec);
+
+                a = 0.0f;
+                while(a < 1.0f)
+                {
+                    a += Time.deltaTime * 2.0f;
+                    midText.alpha = 1.0f - a;
+                    yield return null;
+                }
+
+                a = 0.0f;
 
                 a = 0.0f;
 
