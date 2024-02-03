@@ -28,7 +28,7 @@ public class SummaryButton : MonoBehaviour
         PlayerPrefs.SetInt("Followers", GameLogic.playerHealth);
 
         PlayerPrefs.Save();
-        StartCoroutine(LoadScene("ClickerPhase"));
+        StartCoroutine(LoadScene("PreDebat"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }
 

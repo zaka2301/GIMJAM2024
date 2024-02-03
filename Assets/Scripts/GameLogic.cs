@@ -109,6 +109,7 @@ public class GameLogic : MonoBehaviour
 
 
         stage = PlayerPrefs.GetInt("Stage", 1);
+        PlayerPrefs.SetInt("Stage", stage);
 
         enemyAnimator.SetInteger("Alien", stage);
         switch(stage)
@@ -139,7 +140,7 @@ public class GameLogic : MonoBehaviour
         }
 
 
-        playerHealth = 500;//PlayerPrefs.GetInt("Followers", 0);
+        playerHealth = PlayerPrefs.GetInt("Followers", 0);
         
 
         playerTimer = 2.0f;
@@ -299,7 +300,7 @@ public class GameLogic : MonoBehaviour
             playerHealth -= playerHealthBajer;
 
             hasWon = playerHealth >= enemyHealth ? true : false;
-            GameObject.Find("Continue").GetComponent<Button>().interactable = hasWon;
+            //GameObject.Find("Continue").GetComponent<Button>().interactable = hasWon;
 
             StartCoroutine(BlackScreen());
 
