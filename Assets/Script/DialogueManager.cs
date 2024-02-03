@@ -17,10 +17,12 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> names = new Queue<string>();
     private Queue<Sprite> scenes = new Queue<Sprite>();
     private Queue<string> sentences = new Queue<string>();
+    private Queue<AudioClip> sounds = new Queue<AudioClip>();
     private string sentence = "";
-    private int currentSentence;
 
     private IEnumerator typeCoroutine;
+    private AudioSource audioSource;
+    public GameObject replayScreen;
     
     // Start is called before the first frame update
     void Awake()
@@ -29,7 +31,10 @@ public class DialogueManager : MonoBehaviour
         names = new Queue<string>();
         scenes = new Queue<Sprite>();
         sentences = new Queue<string>();
+        sounds = new Queue<AudioClip>();
+        audioSource = this.gameObject.GetComponent<AudioSource>();
         typeCoroutine = TypeSentence("");
+
         
     }
 
@@ -51,7 +56,7 @@ public class DialogueManager : MonoBehaviour
         names.Clear();
         scenes.Clear();
         sentences.Clear();
-        currentSentence = 1;
+        sounds.Clear();
 
         foreach (string name in dialogue.names)
         {
@@ -64,6 +69,10 @@ public class DialogueManager : MonoBehaviour
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
+        }
+        foreach (AudioClip sound in dialogue.sounds)
+        {
+            sounds.Enqueue(sound);
         }
 
         DisplayNextSentence();
@@ -116,6 +125,9 @@ public class DialogueManager : MonoBehaviour
             nameText.text = names.Dequeue();
             backgroundImage.sprite = scenes.Dequeue();
             sentence = sentences.Dequeue();
+
+
+            audioSource.PlayOneShot(sounds.Dequeue(), 1.0f);
             
             if(sentence == "")
             {
@@ -187,14 +199,35 @@ public class DialogueManager : MonoBehaviour
                 SceneManager.LoadScene("ClickerPhase");
                 break;
             case "EndWin":
-                SceneManager.LoadScene("ClickerPhase");
-                break;
             case "EndLose":
-                SceneManager.LoadScene("ClickerPhase");
+                replayScreen.SetActive(true);
+                backgroundImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
                 break;
             default:
                 break;
 
         }
+    }
+
+
+    public void LoadSceneButton(string scene)
+    {
+        if(scene == "ClickerPhase")
+        {
+            PlayerPrefs.SetInt("Stage", 1);
+            PlayerPrefs.SetInt("Followers", 0);
+
+            PlayerPrefs.SetInt("A1", 0);
+            PlayerPrefs.SetInt("A2", 0);
+            PlayerPrefs.SetInt("A3", 0);
+            PlayerPrefs.SetInt("D1", 0);
+            PlayerPrefs.SetInt("D2", 0);
+            PlayerPrefs.SetInt("D3", 0);
+            PlayerPrefs.SetInt("S1", 0);
+            PlayerPrefs.SetInt("S2", 0);
+            PlayerPrefs.SetInt("S3", 0);
+        }
+        SceneManager.LoadScene(scene);
     }
 }

@@ -18,8 +18,8 @@ public class DialogueLists : MonoBehaviour
 
         
         dialogueManager = FindObjectOfType<DialogueManager>();
-
-        string cutscene = "DebatMonologue";//PlayerPrefs.GetString("Cutscene", "Opening");
+        PlayerPrefs.SetString("Cutscene", "EndWin");
+        string cutscene = PlayerPrefs.GetString("Cutscene", "Opening");
         
         switch(cutscene)
         {
