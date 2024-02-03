@@ -18,7 +18,7 @@ public class DialogueLists : MonoBehaviour
 
         
         dialogueManager = FindObjectOfType<DialogueManager>();
-        PlayerPrefs.SetString("Cutscene", "EndWin");
+
         string cutscene = PlayerPrefs.GetString("Cutscene", "Opening");
         
         switch(cutscene)
