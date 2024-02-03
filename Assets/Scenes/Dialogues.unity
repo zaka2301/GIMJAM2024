@@ -1056,8 +1056,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8900129e9813fdb4b8987068935483ab, type: 3}
     - {fileID: 21300000, guid: 8900129e9813fdb4b8987068935483ab, type: 3}
     sentences:
-    - adslsjkdaflj;asd
-    - asdhjfhasjkdlf
+    - Hoho, as expected of me. At this rate, there's no need to do more debates because
+      it's already obvious that I am THE man for the job.
+    - "Sebaiknya jangan gegabah\u2026  (Don't get carried away\u2026)"
     sounds:
     - {fileID: 8300000, guid: b6323fbeda5502b4782c11d384ab8c5a, type: 3}
     - {fileID: 0}
@@ -1071,9 +1072,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c57f291e023fdc64ea5bd8b6688f8d25, type: 3}
     - {fileID: 21300000, guid: c57f291e023fdc64ea5bd8b6688f8d25, type: 3}
     sentences:
-    - I will not give up...
-    - for the sake of this country...
-    - dsfsdfdsfd BAJER
+    - "There\u2019s no such thing as defeat\u2026"
+    - I will fight for Idgafnesia! Whatever it takes!
+    - Excuse me, is this the contact person for the buzzer service?
     sounds:
     - {fileID: 8300000, guid: e8d76a35368369646858d420deb0f035, type: 3}
     - {fileID: 0}
@@ -1084,7 +1085,7 @@ MonoBehaviour:
     scenes:
     - {fileID: 21300000, guid: a98566b8eb810d247b33705b85e1ddb6, type: 3}
     sentences:
-    - ngriaeinerigegri
+    - "It\u2019s time to d-d-d-duel!"
     sounds:
     - {fileID: 8300000, guid: d333bd75eec40b74fbdb8758a0aa7a54, type: 3}
   endWin:
