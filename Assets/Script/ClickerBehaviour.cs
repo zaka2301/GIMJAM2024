@@ -44,9 +44,9 @@ public class ClickerBehaviour : MonoBehaviour
         {
             followers = 0;
         }
-        UpdateUI();
         currentUpgrade = 0;
         stageMultiplier = (int) Mathf.Pow(2, PlayerPrefs.GetInt("Stage", 1) - 1);
+        UpdateUI();
         startingFollowers = followers;
     }
 
@@ -88,6 +88,9 @@ public class ClickerBehaviour : MonoBehaviour
     void UpdateUI()
     {
         followerText.text = "" + followers;
+        Debug.Log(maxFollowers*stageMultiplier);
+        Debug.Log(followers);
+        Debug.Log((float) followers / (float) maxFollowers*stageMultiplier);
         followerSlider.GetComponent<Slider>().value = (float) followers / (float) (maxFollowers*stageMultiplier);
         if (CardEvent.IsCardEvent)
         {
@@ -108,10 +111,8 @@ public class ClickerBehaviour : MonoBehaviour
 
     void CheckForUpgrade()
     {
-        Debug.Log("Ceccking " + currentUpgrade + " " + maxUpgrade);
         if (currentUpgrade < (maxUpgrade - 1))
         {
-            Debug.Log("available" + startingFollowers + " " + upgradeMilestone[currentUpgrade]);
             if (followers - startingFollowers >= upgradeMilestone[currentUpgrade] * stageMultiplier)
             {
                 currentUpgrade++;
