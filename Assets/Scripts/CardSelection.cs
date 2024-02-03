@@ -43,15 +43,15 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Start()
     {
         audioSource.PlayOneShot(koranSFX, 1.0f);
-        A1.SetActive(PlayerPrefs.GetInt("A1", 1) == 0 ? false : true);
-        A2.SetActive(PlayerPrefs.GetInt("A2", 1) == 0 ? false : true);
-        A3.SetActive(PlayerPrefs.GetInt("A3", 1) == 0 ? false : true);
-        D1.SetActive(PlayerPrefs.GetInt("D1", 1) == 0 ? false : true);
-        D2.SetActive(PlayerPrefs.GetInt("D2", 1) == 0 ? false : true);
-        D3.SetActive(PlayerPrefs.GetInt("D3", 1) == 0 ? false : true);
-        S1.SetActive(PlayerPrefs.GetInt("S1", 1) == 0 ? false : true);
-        S2.SetActive(PlayerPrefs.GetInt("S2", 1) == 0 ? false : true);
-        S3.SetActive(PlayerPrefs.GetInt("S3", 1) == 0 ? false : true);
+        A1.SetActive(PlayerPrefs.GetInt("A1", 0) == 0 ? false : true);
+        A2.SetActive(PlayerPrefs.GetInt("A2", 0) == 0 ? false : true);
+        A3.SetActive(PlayerPrefs.GetInt("A3", 0) == 0 ? false : true);
+        D1.SetActive(PlayerPrefs.GetInt("D1", 0) == 0 ? false : true);
+        D2.SetActive(PlayerPrefs.GetInt("D2", 0) == 0 ? false : true);
+        D3.SetActive(PlayerPrefs.GetInt("D3", 0) == 0 ? false : true);
+        S1.SetActive(PlayerPrefs.GetInt("S1", 0) == 0 ? false : true);
+        S2.SetActive(PlayerPrefs.GetInt("S2", 0) == 0 ? false : true);
+        S3.SetActive(PlayerPrefs.GetInt("S3", 0) == 0 ? false : true);
         StartCoroutine(UnBlackScreen());
     }
 
@@ -92,7 +92,8 @@ public class CardSelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             a += Time.deltaTime;
             yield return null;
         }
-        SceneManager.LoadScene("DebatPhase");
+        PlayerPrefs.SetString("Cutscene", "DebatMonologue");
+        SceneManager.LoadScene("Dialogues");
     }
 
     // Update is called once per frame

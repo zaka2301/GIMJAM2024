@@ -18,7 +18,8 @@ public class SummaryButton : MonoBehaviour
     
     public void Retry()
     {
-        StartCoroutine(LoadScene("ClickerPhase"));
+        PlayerPrefs.SetString("Cutscene", "DebatLose");
+        StartCoroutine(LoadScene("Dialogues"));
     }
 
     public void Continue()
@@ -26,9 +27,9 @@ public class SummaryButton : MonoBehaviour
         int s = PlayerPrefs.GetInt("Stage");
         PlayerPrefs.SetInt("Stage", s + 1);
         PlayerPrefs.SetInt("Followers", GameLogic.playerHealth);
-
+        PlayerPrefs.SetString("Cutscene", "DebatWin");
         PlayerPrefs.Save();
-        StartCoroutine(LoadScene("ClickerPhase"));
+        StartCoroutine(LoadScene("Dialogues"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }
 

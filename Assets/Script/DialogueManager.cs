@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -24,16 +25,28 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
         names = new Queue<string>();
         scenes = new Queue<Sprite>();
         sentences = new Queue<string>();
+        typeCoroutine = TypeSentence("");
         
+    }
+
+    void Update()
+    {
+        if(!IsInDialogue) return;
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            DisplayNextSentence();
+        }
     }
 
     public void StartDialogue (Dialogue dialogue)
     {
         IsInDialogue = true;
-        DialogueUI.SetActive(true);
+        StartCoroutine(ShowDialogue());
 
         names.Clear();
         scenes.Clear();
@@ -56,18 +69,43 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
+    IEnumerator ShowDialogue()
+    {
+        DialogueUI.SetActive(true);
+        Image image = DialogueUI.GetComponent<Image>();
+        float alpha = 0.0f;
+        while(alpha < 1.0f)
+        {
+            alpha += Time.deltaTime * 3.0f;
+            image.color = new Color(1.0f, 1.0f, 1.0f, alpha);
+            yield return null;
+        }
+    }
+    IEnumerator HideDialogue()
+    {
+        Image image = DialogueUI.GetComponent<Image>();
+        float alpha = 1.0f;
+        while(alpha > 0.0f)
+        {
+            alpha -= Time.deltaTime * 3.0f;
+            image.color = new Color(1.0f, 1.0f, 1.0f, alpha);
+            yield return null;
+        }
+        DialogueUI.SetActive(false);
+    }
+
     public void DisplayNextSentence()
     {
         Debug.Log(sentences.Count);
         if (sentences.Count == 0)
         {
-            EndDialogue();
+            StartCoroutine(EndDialogue());
             return;
         }
 
         if(IsTyping)
         {
-            StopAllCoroutines();
+            StopCoroutine(typeCoroutine);
             transitor.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             dialogueText.text = sentence;
             IsTyping = false;
@@ -78,10 +116,15 @@ public class DialogueManager : MonoBehaviour
             nameText.text = names.Dequeue();
             backgroundImage.sprite = scenes.Dequeue();
             sentence = sentences.Dequeue();
-
+            
+            if(sentence == "")
+            {
+                StartCoroutine(HideDialogue());
+                return;
+            }
+            if(!DialogueUI.activeSelf) StartCoroutine(ShowDialogue()); 
             typeCoroutine = TypeSentence(sentence);
             StopCoroutine(typeCoroutine);
-
             StartCoroutine(typeCoroutine);
         }
     }
@@ -94,7 +137,7 @@ public class DialogueManager : MonoBehaviour
         float alpha = 1.0f;
         while(alpha > 0.0f)
         {
-            alpha -= Time.deltaTime * 2.0f;
+            alpha -= Time.deltaTime * 3.0f;
             transitor.color = new Color(1.0f, 1.0f, 1.0f, alpha);
             yield return null;
         }
@@ -112,9 +155,46 @@ public class DialogueManager : MonoBehaviour
         IsTyping = false;
     }
 
-    void EndDialogue()
+    
+
+    IEnumerator EndDialogue()
     {
         IsInDialogue = false;
+        
+        float col = 1.0f;
+        while(col > 0.0f)
+        {
+            col -= Time.deltaTime * 2.0f;
+            DialogueUI.GetComponent<Image>().color = new Color(col, col, col, 1.0f);
+            backgroundImage.color = new Color(col, col, col, 1.0f);
+            yield return null;
+        }
         DialogueUI.SetActive(false);
+
+
+        switch(PlayerPrefs.GetString("Cutscene"))
+        {
+            case "Opening":
+                SceneManager.LoadScene("ClickerPhase");
+                break;
+            case "DebatMonologue":
+                SceneManager.LoadScene("DebatPhase");
+                break;
+            case "DebatWin":
+                SceneManager.LoadScene("ClickerPhase");
+                break;
+            case "DebatLose":
+                SceneManager.LoadScene("ClickerPhase");
+                break;
+            case "EndWin":
+                SceneManager.LoadScene("ClickerPhase");
+                break;
+            case "EndLose":
+                SceneManager.LoadScene("ClickerPhase");
+                break;
+            default:
+                break;
+
+        }
     }
 }
