@@ -23,6 +23,9 @@ public class CardEvent : MonoBehaviour
 
     private int stageMultiplier;
 
+    [SerializeField] AudioClip stopwatchSound;
+    [SerializeField] AudioClip applauseSound;
+
     void Start()
     {
         stageMultiplier = (int) Mathf.Pow(2, PlayerPrefs.GetInt("Stage", 1) - 1);
@@ -60,6 +63,7 @@ public class CardEvent : MonoBehaviour
     public void StartCardEvent()
     {
         IsCardEvent = true;
+        GetComponent<AudioSource>().PlayOneShot(stopwatchSound, 1f);
         StartCoroutine(stopwatchObject.GetComponent<Stopwatch>().StartStopwatch());
         StartCoroutine(CardEventCountDown());
     }
@@ -74,6 +78,7 @@ public class CardEvent : MonoBehaviour
             cardImage.sprite = cardSprites[cardIndex];
             cardObject.SetActive(true);
             cardObject.GetComponent<Animator>().SetTrigger("GotCard");
+            GetComponent<AudioSource>().PlayOneShot(applauseSound, 1f);
         }
         cardCountDownText.text = "";
         cardUI.GetComponent<Animator>().SetTrigger("EndEvent");

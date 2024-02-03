@@ -34,6 +34,9 @@ public class ClickerBehaviour : MonoBehaviour
     [SerializeField] int maxUpgrade;
     [SerializeField] int[] upgradeMilestone;
 
+    [SerializeField] AudioClip tapSound;
+    [SerializeField] AudioClip milestoneSound;
+
     void Start()
     {
         if (PlayerPrefs.GetInt("Stage", 1) != 1)
@@ -63,6 +66,7 @@ public class ClickerBehaviour : MonoBehaviour
             CheckForUpgrade();
             UpdateUI();
             UpdateChat();
+            GetComponent<AudioSource>().PlayOneShot(tapSound, 1f);
         }
         if (popupBloom > 0f)
         {
@@ -88,9 +92,6 @@ public class ClickerBehaviour : MonoBehaviour
     void UpdateUI()
     {
         followerText.text = "" + followers;
-        Debug.Log(maxFollowers*stageMultiplier);
-        Debug.Log(followers);
-        Debug.Log((float) followers / (float) maxFollowers*stageMultiplier);
         followerSlider.GetComponent<Slider>().value = (float) followers / (float) (maxFollowers*stageMultiplier);
         if (CardEvent.IsCardEvent)
         {
@@ -124,6 +125,7 @@ public class ClickerBehaviour : MonoBehaviour
     void Upgrade()
     {
         followerGain++;
+        GetComponent<AudioSource>().PlayOneShot(milestoneSound, 1f);
         int stage = PlayerPrefs.GetInt("Stage", 1);
         switch (stage)
         {
