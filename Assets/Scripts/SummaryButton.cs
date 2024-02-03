@@ -33,6 +33,17 @@ public class SummaryButton : MonoBehaviour
         //SceneManager.LoadScene("", LoadSceneMode.Single);
     }
 
+    public void skip()
+    {
+        int s = PlayerPrefs.GetInt("Stage");
+        int win = PlayerPrefs.GetInt("Win");
+        PlayerPrefs.SetInt("Stage", s + 1);
+        PlayerPrefs.SetString("Cutscene", s == 5 ? (win >= 3 ? "EndWin" : "EndLose") : "DebatWin");
+        PlayerPrefs.SetInt("Win", win + 1);
+        PlayerPrefs.Save();
+        StartCoroutine(LoadScene("Dialogues"));       
+    }
+
     private IEnumerator LoadScene(string scene)
     {
         float a = 0.0f;

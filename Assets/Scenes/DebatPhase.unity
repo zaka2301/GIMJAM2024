@@ -2248,7 +2248,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1980376779}
         m_TargetAssemblyTypeName: SummaryButton, Assembly-CSharp
-        m_MethodName: Continue
+        m_MethodName: skip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
