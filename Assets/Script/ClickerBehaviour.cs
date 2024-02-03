@@ -19,6 +19,7 @@ public class ClickerBehaviour : MonoBehaviour
     public static int followers {get; private set; }
     [SerializeField] int maxFollowers;
     private int startingFollowers;
+    private int stageMultiplier;
 
     [SerializeField] int followerGain;
     [SerializeField] float bonusChance;
@@ -45,6 +46,7 @@ public class ClickerBehaviour : MonoBehaviour
         }
         UpdateUI();
         currentUpgrade = 0;
+        stageMultiplier = (int) Mathf.Pow(2, PlayerPrefs.GetInt("Stage", 1) - 1);
         startingFollowers = followers;
     }
 
@@ -60,6 +62,7 @@ public class ClickerBehaviour : MonoBehaviour
             GainFollowers();
             CheckForUpgrade();
             UpdateUI();
+            UpdateChat();
         }
         if (popupBloom > 0f)
         {
@@ -69,26 +72,37 @@ public class ClickerBehaviour : MonoBehaviour
 
     void GainFollowers()
     {
-        followers += followerGain;
+        followers += followerGain * stageMultiplier;
         float RNG = Random.Range(0f, 1f);
         if (RNG < bonusChance)
             {
-                followers += bonusGain;
-                CreatePopup(popupPrefab, (Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + (followerGain + bonusGain) + " Bonus");
+                followers += bonusGain * stageMultiplier;
+                CreatePopup(popupPrefab, (Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + ((followerGain + bonusGain) * stageMultiplier) + " Bonus");
             }
             else
             {
-                CreatePopup(popupPrefab, (Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + followerGain);
+                CreatePopup(popupPrefab, (Input.mousePosition * 10f / 1080f) - new Vector3(8.88f + Random.Range(-popupBloom, popupBloom), 5f + Random.Range(-popupBloom, popupBloom), 0f), "+" + (followerGain * stageMultiplier));
             }
     }
 
     void UpdateUI()
     {
         followerText.text = "" + followers;
-        followerSlider.GetComponent<Slider>().value = (float) followers / (float) maxFollowers;
+        followerSlider.GetComponent<Slider>().value = (float) followers / (float) (maxFollowers*stageMultiplier);
         if (CardEvent.IsCardEvent)
         {
             GetComponent<CardEvent>().UpdateCardEventUI();
+        }
+    }
+
+    void UpdateChat()
+    {
+        if (StageManager.stage == 3)
+        {
+            for (int i = 0; i < currentUpgrade + 1; i++)
+            {
+                GameObject.FindWithTag("StageManager").GetComponent<StageManager>().AddChat();
+            }
         }
     }
 
@@ -98,7 +112,7 @@ public class ClickerBehaviour : MonoBehaviour
         if (currentUpgrade < (maxUpgrade - 1))
         {
             Debug.Log("available" + startingFollowers + " " + upgradeMilestone[currentUpgrade]);
-            if (followers - startingFollowers >= upgradeMilestone[currentUpgrade])
+            if (followers - startingFollowers >= upgradeMilestone[currentUpgrade] * stageMultiplier)
             {
                 currentUpgrade++;
                 Upgrade();

@@ -154,7 +154,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 814177396}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -282,7 +282,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &186407454
 MonoBehaviour:
@@ -361,6 +361,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleObject: {fileID: 1757725373}
+--- !u!1 &189798347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8403764795908441886, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+  m_PrefabInstance: {fileID: 8403764795829801173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &504949654
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +378,7 @@ GameObject:
   - component: {fileID: 504949655}
   m_Layer: 0
   m_Name: StageManager
-  m_TagString: Untagged
+  m_TagString: StageManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,7 +395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e97fff81f03be840848f4604cc97b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 0
   stageBackgrounds:
   - {fileID: 21300000, guid: 65d7cf33b18225e429b2c3161409615e, type: 3}
   - {fileID: 21300000, guid: 54606a91e66d33243824eab4f0a0610b, type: 3}
@@ -398,6 +402,37 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 064aee053372cf944871f62d276bff0e, type: 3}
   - {fileID: 21300000, guid: e46e69018a83c5645ab1c0198b312d20, type: 3}
   backroundRenderer: {fileID: 2048617614}
+  chatPrefab: {fileID: 189798347}
+  chatPosition: {x: 6.6, y: -3.2}
+  chatSpeed: 1
+  chatNamesCount: 5
+  chatNames:
+  - Dwi
+  - XxMuhammadxX
+  - KurniawanFire
+  - Muhammad Sumbul
+  - Budi
+  chatTextsCount: 19
+  chatTexts:
+  - tipis tipis cakk
+  - sesekali
+  - kelas abangkuu
+  - izin abangkuu
+  - panutan
+  - kelas abangda
+  - rispeekk
+  - manyala ilmu padi
+  - kelas boskuuuh
+  - 'tetep ilmu padi '
+  - top abangku
+  - kelas banget kanda
+  - manyala capt
+  - top
+  - jangan kasih kendor ee
+  - kasih paham capt
+  - apotik tutup captain
+  - lanjutkan abangkuuhh
+  - jangan kasi longgar king
 --- !u!4 &504949656
 Transform:
   m_ObjectHideFlags: 0
@@ -411,7 +446,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -495,7 +530,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &685735462
 GameObject:
@@ -765,12 +800,12 @@ RectTransform:
   - {fileID: 2002056206}
   - {fileID: 701355337}
   - {fileID: 1913549700}
-  - {fileID: 1126973458}
   - {fileID: 1022400403}
   - {fileID: 1757725374}
   - {fileID: 114613640}
+  - {fileID: 1126973458}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1370,7 +1405,7 @@ RectTransform:
   - {fileID: 1796205616}
   - {fileID: 1694339095}
   m_Father: {fileID: 814177396}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1515,11 +1550,11 @@ RectTransform:
   m_Children:
   - {fileID: 889236769}
   m_Father: {fileID: 814177396}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 69}
+  m_AnchoredPosition: {x: 537, y: 378}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1126973459
@@ -1566,9 +1601,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 186407455}
-        m_TargetAssemblyTypeName: CardEvent, Assembly-CSharp
-        m_MethodName: TriggerCardEvent
+      - m_Target: {fileID: 186407456}
+        m_TargetAssemblyTypeName: PreGame, Assembly-CSharp
+        m_MethodName: End
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1709,7 +1744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6140334692504206251, guid: 78997da1c20f73248bb74989089001a7, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6140334692504206251, guid: 78997da1c20f73248bb74989089001a7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2182,7 +2217,7 @@ RectTransform:
   m_Children:
   - {fileID: 1977818666}
   m_Father: {fileID: 814177396}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2731,7 +2766,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7525ece8ee9eb2d4d8d3a3aca7723b19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a811753d5891ed45a283f9e870d2bd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2823,8 +2858,113 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8403764795829801173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441882, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764795908441886, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_Name
+      value: TwitchChat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764796836096749, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 310
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403764796836096751, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03b6feee0d7aa6649af04e2000d511b3, type: 3}
 --- !u!1001 &8455838107608879940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2846,7 +2986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455838106824641236, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8455838106824641236, guid: 2f784ee551afa9d4f8d50a6e0a3c47bd, type: 3}
       propertyPath: m_AnchorMax.x
