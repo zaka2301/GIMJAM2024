@@ -242,6 +242,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be8a638418ef04443aa89843d578bf06, type: 3}
   - {fileID: 21300000, guid: 859e08d879269f64297c7cf892bc5c80, type: 3}
   - {fileID: 21300000, guid: d5e637b016786284eb4ffab416f44a56, type: 3}
+  backgroundSprites2:
+  - {fileID: 21300000, guid: c882b4da24d51a74cbd2998682af95a0, type: 3}
+  - {fileID: 21300000, guid: 39c4aa44ee3c6ae4bbcdd37b242f0a29, type: 3}
+  - {fileID: 21300000, guid: 6e79c9a55f239fa46980d415d99c5763, type: 3}
+  - {fileID: 21300000, guid: fa0b34b6c74ba784bbe35244df5e0607, type: 3}
+  - {fileID: 21300000, guid: 4a78d06bcabb1634e893dace4614ad27, type: 3}
+  backgroundSprites4:
+  - {fileID: 21300000, guid: 7e1a7840a775d2c43844b6f2eb05aa3e, type: 3}
+  - {fileID: 21300000, guid: 2d8136f39a0deb745a46beaef9b5a6da, type: 3}
+  - {fileID: 21300000, guid: ce11766eb27929a4286bae05c1c25a29, type: 3}
+  - {fileID: 21300000, guid: 4ea2b58238d6622488eb49af0464b3c5, type: 3}
+  - {fileID: 21300000, guid: 1fb5272d5a70d254787047d63c89bff7, type: 3}
+  backgroundSprites5:
+  - {fileID: 21300000, guid: 6261217087d4ce6449d6daf32e9d6fd5, type: 3}
+  - {fileID: 21300000, guid: 7bf1ad9e9bc09b44087d0950bc542dd3, type: 3}
+  - {fileID: 21300000, guid: 94abb303ce937ca4cb0bac7fb867a933, type: 3}
+  - {fileID: 21300000, guid: 834efdb7d4b96ec4eadaa32eb0b90889, type: 3}
+  - {fileID: 21300000, guid: 834efdb7d4b96ec4eadaa32eb0b90889, type: 3}
   maxFollowers: 1500
   followerGain: 1
   bonusChance: 0.1
@@ -375,8 +393,10 @@ MonoBehaviour:
   stage: 0
   stageBackgrounds:
   - {fileID: 21300000, guid: 65d7cf33b18225e429b2c3161409615e, type: 3}
-  - {fileID: 21300000, guid: 7525ece8ee9eb2d4d8d3a3aca7723b19, type: 3}
+  - {fileID: 21300000, guid: 54606a91e66d33243824eab4f0a0610b, type: 3}
   - {fileID: 21300000, guid: 9a811753d5891ed45a283f9e870d2bd4, type: 3}
+  - {fileID: 21300000, guid: 064aee053372cf944871f62d276bff0e, type: 3}
+  - {fileID: 21300000, guid: e46e69018a83c5645ab1c0198b312d20, type: 3}
   backroundRenderer: {fileID: 2048617614}
 --- !u!4 &504949656
 Transform:
