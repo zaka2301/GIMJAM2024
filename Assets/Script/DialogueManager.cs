@@ -11,9 +11,11 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public GameObject DialogueUI;
     public bool IsInDialogue = false;
+    private bool IsTyping = false;
     private Queue<string> names;
     private Queue<Sprite> scenes;
     private Queue<string> sentences;
+    private string sentence;
     private int currentSentence;
     
     // Start is called before the first frame update
@@ -58,21 +60,32 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        nameText.text = names.Dequeue();
-        backgroundImage.sprite = scenes.Dequeue();
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        if(IsTyping)
+        {
+            StopAllCoroutines();
+            dialogueText.text = sentence;
+            IsTyping = false;
+        }
+        else
+        {
+            nameText.text = names.Dequeue();
+            backgroundImage.sprite = scenes.Dequeue();
+            sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
     }
 
     IEnumerator TypeSentence (string sentence)
     {
+        IsTyping = true;
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.02f);
         }
+        IsTyping = false;
     }
 
     void EndDialogue()

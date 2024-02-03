@@ -168,19 +168,28 @@ public class GameLogic : MonoBehaviour
         
         StartCoroutine(PlayMidText("Start"));
 
-
+        StartCoroutine(StartBubble(enemyBubble));
 
     }
 
 
-    IEnumerator StartBubble()
+    IEnumerator StartBubble(GameObject bubble)
     {
-        while(true)
-        {
-            float chance = Random.Range(0.0f, 1.0f);
+            float rand = Random.Range(0.0f, 1.0f);
+
+            if (rand < 0.5f)
+            {
+                bubble.SetActive(true);
+                yield return new WaitForSeconds(2.0f);
+                bubble.SetActive(false);
+            }
+            else
+            {
+                yield return new WaitForSeconds(rand);
+            }
             yield return new WaitForSeconds(2.0f);
-        }
-        yield return new WaitForSeconds(2.0f);sad
+            StartCoroutine(StartBubble(bubble));
+            yield break;
     }
 
 
