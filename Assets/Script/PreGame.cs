@@ -28,6 +28,11 @@ public class PreGame : MonoBehaviour
         gameStarted = true;
     }
 
+    public void End()
+    {
+        StartCoroutine(EndGame());
+    }
+
     public IEnumerator EndGame()
     {
         gameStarted = false;

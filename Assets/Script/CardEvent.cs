@@ -21,8 +21,11 @@ public class CardEvent : MonoBehaviour
     private int currentCardEvent = 0;
     private int followerStart;
 
+    private int stageMultiplier;
+
     void Start()
     {
+        stageMultiplier = (int) Mathf.Pow(2, PlayerPrefs.GetInt("Stage", 1) - 1);
         if (PlayerPrefs.GetInt("Stage", 1) != 1)
         {
             int i = 0;
@@ -54,7 +57,7 @@ public class CardEvent : MonoBehaviour
     public void EndCardEvent()
     {
         IsCardEvent = false;
-        if (ClickerBehaviour.followers - followerStart >= followersNeeded[currentCardEvent])
+        if (ClickerBehaviour.followers - followerStart >= followersNeeded[currentCardEvent] * stageMultiplier)
         {
             int cardIndex = CardRandomizerIndex();
             PlayerPrefs.SetInt(cardNames[cardIndex], 1);
@@ -95,6 +98,6 @@ public class CardEvent : MonoBehaviour
 
     public void UpdateCardEventUI()
     {
-        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/" + followersNeeded[currentCardEvent] + " Followers" ;
+        cardCountDownText.text = (ClickerBehaviour.followers - followerStart) + "/" + (followersNeeded[currentCardEvent] * stageMultiplier) + " Followers" ;
     }
 }
