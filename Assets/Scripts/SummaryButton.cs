@@ -27,7 +27,7 @@ public class SummaryButton : MonoBehaviour
         int s = PlayerPrefs.GetInt("Stage");
         int win = PlayerPrefs.GetInt("Win");
         PlayerPrefs.SetInt("Stage", s + 1);
-        PlayerPrefs.Setint("Win", win + (hasWon ? 1 : 0));
+        PlayerPrefs.SetInt("Win", win + (GameLogic.hasWon ? 1 : 0));
         PlayerPrefs.Save();
         StartCoroutine(LoadScene("Dialogues"));
         //SceneManager.LoadScene("", LoadSceneMode.Single);
