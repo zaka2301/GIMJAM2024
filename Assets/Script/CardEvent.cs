@@ -42,14 +42,24 @@ public class CardEvent : MonoBehaviour
 
     public void TriggerCardEvent()
     {
-        IsCardEvent = true;
-        followerStart = ClickerBehaviour.followers;
-        cardCountDownText.text = "Card Event!!";
-        cardUI.GetComponent<Animator>().SetTrigger("StartEvent");
+        float weightSum = 0f;
+
+        foreach (float weight in cardWeights)
+        {
+            weightSum += weight;
+        }
+
+        if (weightSum != 0)
+        {
+            followerStart = ClickerBehaviour.followers;
+            cardCountDownText.text = "Card Event!!";
+            cardUI.GetComponent<Animator>().SetTrigger("StartEvent");
+        }
     }
 
     public void StartCardEvent()
     {
+        IsCardEvent = true;
         StartCoroutine(stopwatchObject.GetComponent<Stopwatch>().StartStopwatch());
         StartCoroutine(CardEventCountDown());
     }
