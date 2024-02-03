@@ -120,19 +120,19 @@ public class GameLogic : MonoBehaviour
                 maxTurn = 3;
                 break;
             case 2:
-                enemyHealth = 3000;
+                enemyHealth = 4500;
                 maxTurn = 3;
                 break;
             case 3:
-                enemyHealth = 6000;
+                enemyHealth = 10500;
                 maxTurn = 3;
                 break;
             case 4:
-                enemyHealth = 12000;
+                enemyHealth = 22500;
                 maxTurn = 4;
                 break;
             case 5:
-                enemyHealth = 24000;
+                enemyHealth = 46500;
                 maxTurn = 5;
                 break;
             default:
